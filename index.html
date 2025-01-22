@@ -3,574 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz App-Easy Questions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Akash's Portfolio--Projects,experiences,about,contact</title>
+    <link rel="shortcut icon" href="https://www.shutterstock.com/image-vector/red-alphabet-letter-suitable-logo-260nw-1432578677.jpg" type="image/x-icon">
 </head>
 <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+
+    *
+    {
+        padding: 0;
+        margin: 0;
+        font-family: 'Poppins',sans-serif;
+        box-sizing: border-box;
+    }
     body
     {
- background: #001e4d;
-    }
-    .container
-    {
-        background: white;
-        width: 90%;
-        max-width: 600px;
-        margin: 100px auto 0;
-        border-radius: 10px;
-        padding: 30px;
-        box-shadow: 10px 10px 0.2px #001e4d;
-    }
-    .container>h1{
-        font-size: 25px;
-        color: #001e4d;
-        font-weight: 600;
-        border-radius: 1px soid #333;
-        padding-bottom: 5px;
-    }
-    .quiz
-    {
-        padding: 20px 0;
-
-    }
-    .quiz>h2
-    {
-        font-size: 18px;
-        color: #001e4d;
-        font-weight:600 ;
-    }
-    .btn
-    {
-        background: white;
-        color: #222;
-        font-weight: 500;
         width: 100%;
-        border: 1px solid #222;
-        padding: 10px;
-        margin: 10px 0;
-        text-align: left;
+        height: 100vh;
+        overflow: hidden;
+       background-color: black;
+    }
+    nav
+    {
+        width: 100%;
+        height: 10vh;
+        position: sticky;
+    }
+    .nav-container
+    {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .nav-container>.logo>span
+    {
+        font-size: 2rem;
+        font-weight: bold;
+        color: rgb(159, 18, 18);
+    }
+    .hamburg,.cancel
+    {
         cursor: pointer;
-        border-radius: 10px;
-        transition: all 0.3s;
-    }
-    .btn:hover:not([disabled])
-    {
-        background: #222;
+        position: absolute;
+        right: 15px;
+        top: 10px;
         color: white;
-    }
-    .btn:disabled
-    {
-        cursor: no-drop;
-    }
-    #nextbtn
-    {
-        background: #001e4d;
-        color: white;
-        font-weight: 500;
-        width: 150px;
-        border: 0;
-        padding: 10px;
-        margin: 20px auto 0;
-        border-radius: 4px;
-        cursor: pointer;
+        font-size: clamp(2.5rem,0.5rem + 5vw,3rem);
         display: none;
     }
-    .correct
+.nav-container>.links
+{
+    display: flex ;
+}
+.nav-container>.links>a
+{
+    font-size: 1.2rem;
+    color: white;
+    margin: 0 20px;
+    text-decoration: none;
+    font-weight: 550;
+    transition: 0.3s linear;
+}
+.nav-container>.links>a:hover
+{
+    color: rgb(159, 18, 18);
+    border-bottom: 2px solid rgb(159, 18, 18);
+}
+.dropdown
+{
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    transform: translateY(-400px);
+    width: 100%;
+    height: auto;
+    backdrop-filter: blur(5px)brightness(40%);
+    box-shadow: 0 0 20px black;
+    transition: 0.2s linear;
+}
+.dropdown>a
+{
+    display: flex ;
+    color: white;
+    text-decoration: none;
+    padding: 15px 0;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s linear;
+}
+.dropdown>a:hover
+{
+ background-color: rgb(159, 18, 18);;
+}
+section
+{
+    width: 100%;
+    height: 90vh;
+}
+.main-container
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.main-container>.image
+{
+    width: 450px;
+    height: 60vh;
+    overflow: hidden;
+}
+.main-container>.image>img
+{
+    width: 100%;
+    border-radius: 50%;
+}
+.main-container>.image>img:hover
+{
+    animation: animate 1.5s ease-in-out infinite;
+}
+@keyframes animate
+{
+    0%
     {
-        background: #9aeabc;
+        scale: 1;
     }
-    .Incorrect
+    50%
     {
-        background:#ff9393;
+        scale:1.05
     }
+    100%
+    {
+        scale:1;
+    }
+}
+.main-container>.content
+{
+    color: white;
+    width: 40%;
+    min-height: 100px;
+}
+.content>h1
+{
+    font-size: clamp(1rem,1rem + 5vw,1.8rem);
+}
+.content>h1>span{
+    font-weight: 700;
+    text-shadow: 0 0 10px rgb(159, 18, 18);
+    color: rgb(159, 18, 18);
+}
+.typing-text
+{
+    font-size: clamp(1rem,1rem + 5vw,2.5rem);
+    font-weight: 700;
+    position: relative;
+}
+.typing-text>span::before
+{
+    content: "";
+    color: rgb(159, 18, 18);
+    animation: words 20s infinite;
+}
+.typing-text>span::after
+{
+    content: "";
+   background-color: black;
+   position: absolute;
+   width: calc(100% + 8px);
+   height: 100%;
+   border-left: 3px solid black;
+   right: -8;
+    animation: cursor 0.5s infinite;
+}
+@keyframes cursor
+{
+    to
+    {
+        border-left: 3px solid white;
+    }
+}
+@keyframes words
+{
+    0%,20%
+    {
+        content: "Programmer";
+    }
+    41%,60%
+    {
+        content: "Web Designer";
+    }
+    61%,80%
+    {
+        content: "AI Engineer";
+    }
+    81%,100%
+    {
+        content: "Designer";
+    }
+
+}
+.content>p
+{
+    font-size: clamp(0.4rem,0.2rem + 9vw,1rem);
+    margin: 10px 0;
+}
+.social-links>a>i
+{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: transparent;
+    border: 0.2rem solid rgb(159, 18, 18) ;
+    border-radius: 50%;
+    color: rgb(159, 18, 18);
+    margin: 5px 15px 5px 0;
+    font-size: 1.5rem;
+    transition: 0.2s linear;
+}
+.social-links>a>i:hover
+{
+    scale: 1.3;
+    filter: drop-shadow(0 0 10px rgb(159, 18, 18));
+    background-color: rgb(159, 18, 18);
+    color: white;
+}
+@media(max-width:884px)
+{
+    nav.logo
+    {
+        position: absolute;
+        top: 16px;
+        left: 15px;
+        font-size: 1.5rem;
+    }
+
+    .main-container
+    {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-container .links
+    {
+        display: none;
+    }
+    .hamburg
+    {
+        display: block;
+    }
+    .main-container .content
+    {
+        width: 80%;
+        margin-top: -40px;
+    }
+    .social-links i
+    {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.5rem;
+    }
+    .typing-text
+    {
+        font-size: 2rem;
+    }
+    
+    .main-container .image
+    {
+       z-index: -1;
+       width: 50%;
+       height: 60%;
+    }
+    @keyframes cursor
+{
+    to
+    {
+        border-left: 1px solid white;
+    }
+}
+}
+@media(max-width:480px)
+{
+    .main-container .image
+    {
+        width: 50%;
+        height: 30%;
+    }
+    .main-container .content
+    {
+        width: 80%;
+        margin-top: -40px;
+    }
+    @keyframes cursor
+{
+    to
+    {
+        border-left: 1px solid white;
+    }
+}
+
+}
 </style>
 <body>
-    <div class="container">
-        <h1>Quiz</h1>
-<div class="quiz">
-    <h2 class="question" id="question">Question</h2>
-    <div class="answerbtn" id="answerbtn">
-    <button class="btn">Option1</button>
-    <button class="btn">Option2</button>
-    <button class="btn">Option3</button>
-    <button class="btn">Option4</button>
-    </div>
-    <button id="nextbtn">Next</button>
-</div>
-    </div>
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                <span>Portfolio</span>
+            </div>
+            <div class="links">
+                <a href=""><div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100">Home</div></a>
+                <a href=""><div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">About</div></a>
+                <a href=""><div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">Skills</div></a>
+                <a href=""><div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400">Projects</div></a>
+                <a href=""><div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">Contact</div></a>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="hamburger()"></i>
+            <div class="dropdown">
+                <a href="">Home</a>
+                <a href="">About</a>
+                <a href="">Skills</a>
+                <a href="">Projects</a>
+                <a href="">Contact</a>
+            </div>
+            <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+        </div>
+    </nav>
+    <section>
+        <div class="main-container">
+            <div class="image" data-aos="zoom-in-right" data-aos-duration="3000">
+                <img src="ai-generated-8498590.png" alt="">
+            </div>
+            <div class="content">
+                <h1 data-aos="fade-right" data-aos-duration="1500" data-aos-delay="700">Hey I'm <span>Akash</span></h1>
+                <h2 class="typing-text" data-aos="fade-left" data-aos-duration="1500" data-aos-delay="900">I'm a <span></span></h2>
+                <p data-aos="flip-up" data-aos-duration="1500" data-aos-delay="1100">Creative web developer skilled in front-end and back-end technologies, delivering responsive, user-friendly websites. Passionate about clean code, innovative design, and building seamless digital experiences for diverse client needs.</p>
+                <div class="social-links">
+                    <a href="" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1200"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href=""  data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1300"><i class="fa-brands fa-github"></i></a>
+                    <a href="" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1400"><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""  data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1500"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
-const question=[
+  AOS.init({offset:0});
+</script>
+<script>
+    function hamburger()
     {
-        question:"Which is largest animal in the world?",
-        answers:[
-            {text:"Shark",correct:false},
-            {text:"Blue whale",correct:true},
-            {text:"Elephant",correct:false},
-            {text:"Giraffe",correct:false},
-        ]
-
-    },
-    {
-        question:"Which is largest desert in the world?",
-        answers:[
-            {text:"kalahari",correct:false},
-            {text:"Gobi",correct:false},
-            {text:"Sahara",correct:true},
-            {text:"Antatctica",correct:false},
-        ]
-
-    },
-    {
-        question: "What is the capital of France?",
-        answers: [
-            { text: "Berlin", correct: false },
-            { text: "Madrid", correct: false },
-            { text: "Paris", correct: true },
-            { text: "Rome", correct: false },
-        ]
-    },
-    {
-        question: "Which planet is known as the Red Planet?",
-        answers: [
-            { text: "Earth", correct: false },
-            { text: "Mars", correct: true },
-            { text: "Jupiter", correct: false },
-            { text: "Saturn", correct: false },
-        ]
-    },
-    {
-        question: "What is the largest mammal in the world?",
-        answers: [
-            { text: "Elephant", correct: false },
-            { text: "Blue Whale", correct: true },
-            { text: "Giraffe", correct: false },
-            { text: "Great White Shark", correct: false },
-        ]
-    },
-    {
-        question: "Which element has the chemical symbol 'O'?",
-        answers: [
-            { text: "Gold", correct: false },
-            { text: "Oxygen", correct: true },
-            { text: "Osmium", correct: false },
-            { text: "Oganesson", correct: false },
-        ]
-    },
-    {
-        question: "Who wrote 'Romeo and Juliet'?",
-        answers: [
-            { text: "Charles Dickens", correct: false },
-            { text: "Mark Twain", correct: false },
-            { text: "William Shakespeare", correct: true },
-            { text: "Jane Austen", correct: false },
-        ]
-    },
-    {
-        question: "What is the powerhouse of the cell?",
-        answers: [
-            { text: "Nucleus", correct: false },
-            { text: "Mitochondria", correct: true },
-            { text: "Ribosome", correct: false },
-            { text: "Endoplasmic Reticulum", correct: false },
-        ]
-    },
-    {
-        question: "Which gas do plants absorb from the atmosphere?",
-        answers: [
-            { text: "Oxygen", correct: false },
-            { text: "Carbon Dioxide", correct: true },
-            { text: "Nitrogen", correct: false },
-            { text: "Hydrogen", correct: false },
-        ]
-    },
-    {
-        question: "What is the longest river in the world?",
-        answers: [
-            { text: "Amazon", correct: true },
-            { text: "Nile", correct: false },
-            { text: "Yangtze", correct: false },
-            { text: "Mississippi", correct: false },
-        ]
-    },
-    {
-        question: "Which country is known as the Land of the Rising Sun?",
-        answers: [
-            { text: "China", correct: false },
-            { text: "Japan", correct: true },
-            { text: "Thailand", correct: false },
-            { text: "South Korea", correct: false },
-        ]
-    },
-    {
-        question: "What is the smallest prime number?",
-        answers: [
-            { text: "0", correct: false },
-            { text: "1", correct: false },
-            { text: "2", correct: true },
-            { text: "3", correct: false },
-        ]
-    },
-    {
-        question: "Which planet is closest to the Sun?",
-        answers: [
-            { text: "Venus", correct: false },
-            { text: "Earth", correct: false },
-            { text: "Mercury", correct: true },
-            { text: "Mars", correct: false },
-        ]
-    },
-    {
-        question: "What is the main ingredient in guacamole?",
-        answers: [
-            { text: "Tomato", correct: false },
-            { text: "Avocado", correct: true },
-            { text: "Pepper", correct: false },
-            { text: "Onion", correct: false },
-        ]
-    },
-    {
-        question: "Who painted the Mona Lisa?",
-        answers: [
-            { text: "Vincent van Gogh", correct: false },
-            { text: "Pablo Picasso", correct: false },
-            { text: "Leonardo da Vinci", correct: true },
-            { text: "Claude Monet", correct: false },
-        ]
-    },
-    {
-        question: "What is the capital of Japan?",
-        answers: [
-            { text: "Tokyo", correct: true },
-            { text: "Kyoto", correct: false },
-            { text: "Osaka", correct: false },
-            { text: "Hiroshima", correct: false },
-        ]
-    },
-    {
-        question: "What is the hardest natural substance on Earth?",
-        answers: [
-            { text: "Gold", correct: false },
-            { text: "Diamond", correct: true },
-            { text: "Iron", correct: false },
-            { text: "Quartz", correct: false },
-        ]
-    },
-    {
-        question: "Which organ is responsible for pumping blood throughout the body?",
-        answers: [
-            { text: "Liver", correct: false },
-            { text: "Lungs", correct: false },
-            { text: "Heart", correct: true },
-            { text: "Kidneys", correct: false },
-        ]
-    },
-    {
-        question: "Which gas is most abundant in the Earth's atmosphere?",
-        answers: [
-            { text: "Oxygen", correct: false },
-            { text: "Nitrogen", correct: true },
-            { text: "Carbon Dioxide", correct: false },
-            { text: "Hydrogen", correct: false },
-        ]
-    },
-    {
-        question: "What is the largest planet in our solar system?",
-        answers: [
-            { text: "Earth", correct: false },
-            { text: "Jupiter", correct: true },
-            { text: "Saturn", correct: false },
-            { text: "Neptune", correct: false },
-        ]
-    },
-    {
-        question: "What is the capital of Italy?",
-        answers: [
-            { text: "Venice", correct: false },
-            { text: "Rome", correct: true },
-            { text: "Florence", correct: false },
-            { text: "Milan", correct: false },
-        ]
-    },
-    {
-        question: "Which element has the atomic number 1?",
-        answers: [
-            { text: "Helium", correct: false },
-            { text: "Oxygen", correct: false },
-            { text: "Hydrogen", correct: true },
-            { text: "Carbon", correct: false },
-        ]
-    },
-    {
-        question: "What is the largest ocean on Earth?",
-        answers: [
-            { text: "Atlantic Ocean", correct: false },
-            { text: "Indian Ocean", correct: false },
-            { text: "Arctic Ocean", correct: false },
-            { text: "Pacific Ocean", correct: true },
-        ]
-    },
-    {
-        question: "Which famous scientist developed the theory of general relativity?",
-        answers: [
-            { text: "Isaac Newton", correct: false },
-            { text: "Albert Einstein", correct: true },
-            { text: "Galileo Galilei", correct: false },
-            { text: "Stephen Hawking", correct: false },
-        ]
-    },
-    {
-        question: "What is the capital of Canada?",
-        answers: [
-            { text: "Toronto", correct: false },
-            { text: "Ottawa", correct: true },
-            { text: "Vancouver", correct: false },
-            { text: "Montreal", correct: false },
-        ]
-    },
-    {
-        question: "Which planet is known for its rings?",
-        answers: [
-            { text: "Mars", correct: false },
-            { text: "Saturn", correct: true },
-            { text: "Jupiter", correct: false },
-            { text: "Uranus", correct: false },
-        ]
-    },
-    {
-        question: "What is the chemical formula for water?",
-        answers: [
-            { text: "H2O", correct: true },
-            { text: "CO2", correct: false },
-            { text: "O2", correct: false },
-            { text: "H2O2", correct: false },
-        ]
-    },
-    {
-        question: "Which continent is known as the Dark Continent?",
-        answers: [
-            { text: "Asia", correct: false },
-            { text: "Africa", correct: true },
-            { text: "South America", correct: false },
-            { text: "Australia", correct: false },
-        ]
-    },
-    {
-        question: "What is the currency of Japan?",
-        answers: [
-            { text: "Yen", correct: true },
-            { text: "Won", correct: false },
-            { text: "Dollar", correct: false },
-            { text: "Euro", correct: false },
-        ]
-    },
-    {
-        question: "Which is the smallest country in the world?",
-        answers: [
-            { text: "Monaco", correct: false },
-            { text: "Nauru", correct: false },
-            { text: "Vatican City", correct: true },
-            { text: "San Marino", correct: false },
-        ]
-    },
-    {
-        question: "What is the main ingredient in bread?",
-        answers: [
-            { text: "Flour", correct: true },
-            { text: "Sugar", correct: false },
-            { text: "Salt", correct: false },
-            { text: "Water", correct: false },
-        ]
-    },
-    {
-        question: "Which famous structure was built in ancient Egypt?",
-        answers: [
-            { text: "Colosseum", correct: false },
-            { text: "Great Wall", correct: false },
-            { text: "Pyramids of Giza", correct: true },
-            { text: "Stonehenge", correct: false },
-        ]
-    },
-    {
-        question: "What is the boiling point of water in Celsius?",
-        answers: [
-            { text: "100", correct: true },
-            { text: "0", correct: false },
-            { text: "50", correct: false },
-            { text: "200", correct: false },
-        ]
-    },
-    {
-        question: "Which animal is known as the King of the Jungle?",
-        answers: [
-            { text: "Tiger", correct: false },
-            { text: "Lion", correct: true },
-            { text: "Elephant", correct: false },
-            { text: "Giraffe", correct: false },
-        ]
-    },
-    {
-        question: "What is the chemical symbol for gold?",
-        answers: [
-            { text: "Au", correct: true },
-            { text: "Ag", correct: false },
-            { text: "Fe", correct: false },
-            { text: "Pb", correct: false },
-        ]
-    },
-    {
-        question: "Which planet is known for having a Great Red Spot?",
-        answers: [
-            { text: "Mars", correct: false },
-            { text: "Jupiter", correct: true },
-            { text: "Saturn", correct: false },
-            { text: "Uranus", correct: false },
-        ]
-    },
-    {
-        question: "What is the largest land animal?",
-        answers: [
-            { text: "Giraffe", correct: false },
-            { text: "Elephant", correct: true },
-            { text: "Rhino", correct: false },
-            { text: "Hippopotamus", correct: false },
-        ]
-    },
-    {
-        question: "What is the main language spoken in Brazil?",
-        answers: [
-            { text: "Spanish", correct: false },
-            { text: "Portuguese", correct: true },
-            { text: "English", correct: false },
-            { text: "French", correct: false },
-        ]
-    },
-    {
-        question: "Which famous scientist is known for his laws of motion?",
-        answers: [
-            { text: "Albert Einstein", correct: false },
-            { text: "Isaac Newton", correct: true },
-            { text: "Niels Bohr", correct: false },
-            { text: "Galileo Galilei", correct: false },
-        ]
-    },
-    {
-        question: "What is the capital of Australia?",
-        answers: [
-            { text: "Sydney", correct: false },
-            { text: "Canberra", correct: true },
-            { text: "Melbourne", correct: false },
-            { text: "Brisbane", correct: false },
-        ]
-    },
-    {
-        question: "Which vitamin is produced when a person is exposed to sunlight?",
-        answers: [
-            { text: "Vitamin A", correct: false },
-            { text: "Vitamin B12", correct: false },
-            { text: "Vitamin C", correct: false },
-            { text: "Vitamin D", correct: true },
-        ]
-    },
-    {
-        question: "What is the capital of the United States?",
-        answers: [
-            { text: "New York", correct: false },
-            { text: "Los Angeles", correct: false },
-            { text: "Washington, D.C.", correct: true },
-            { text: "Chicago", correct: false },
-        ]
+        const navbar =document.querySelector(".dropdown")
+        navbar.style.transform="translateY(0px)"
     }
-];
-const questionelement = document.getElementById("question");
-const answerelement=document.getElementById("answerbtn");
-const nextbtn=document.getElementById("nextbtn");
-let currentindex=0;
-let score=0;
-function startquiz()
-{
-    currentindex=0;
-    score=0;
-    nextbtn.innerHTML="Next";
-    showQuestion();
-}
-function showQuestion()
-{
-    resetstate();
-    let currentquestion=question[currentindex];
-    let questionno=currentindex+1;
-    questionelement.innerHTML=questionno+". "+currentquestion.question;
-    currentquestion.answers.forEach(answer=>{
-        const button=document.createElement("button");
-        button.innerHTML=answer.text;
-        button.classList.add("btn");
-        answerelement.appendChild(button);
-        if(answer.correct)
+    function cancel()
     {
-        button.dataset.correct=answer.correct;
+        const navbar =document.querySelector(".dropdown")
+        navbar.style.transform="translateY(-400px)"
     }
-        button.addEventListener("click",selectAnswer);
-    });
-}
-function resetstate()
-{
-    nextbtn.style.display="none";
-    while(answerelement.firstChild)
-{
-    answerelement.removeChild(answerelement.firstChild);
-}
-
-}
-function selectAnswer(e)
-{
-    const selectedbtn=e.target;
-    const isCorrect=selectedbtn.dataset.correct === "true";
-    if(isCorrect)
-{
-    selectedbtn.classList.add("correct");
-    score++;
-}
-else
-{
-    selectedbtn.classList.add("Incorrect");
-}
-Array.from(answerelement.children).forEach(button=>{
-    if(button.dataset.correct ===  "true")
-{
-    button.classList.add("correct");
-}
-button.disabled=true;
-});
-nextbtn.style.display="block";
-}
-function  handlenextbutton()
-{
-currentindex++;
-if(currentindex<question.length)
-{
-    showQuestion();
-}
-else
-{
-    showscore();
-}
-}
-function showscore()
-{
-    resetstate();
-    questionelement.innerHTML=`You scored ${score} out of ${question.length}!`;
-    nextbtn.innerHTML="Play Again";
-    nextbtn.style.display="block";
-}
-nextbtn.addEventListener("click",()=>{
-if(currentindex<question.length)
-{
-    handlenextbutton();
-}
-else
-{
-    startquiz();
-}
-});
-startquiz();
 </script>
 </html>
