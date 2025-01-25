@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ludo Game</title>
+</head>
+<style>
+  body 
+  {
+  text-align: center;
+}
+h1 {
+  color: black;
+  font-family: 'Courier New', Courier, monospace, sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  text-shadow: 1px 2px grey;
+}
+p 
+{
+  font-size: 20px;
+}
+
+#button {
+  display: block;
+  position: absolute;
+  margin-left: 100px;
+  margin-bottom: 30px;
+  padding: 15px 25px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #a01c1c;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+#button:hover {background-color: #a59b27}
+
+#button:active {
+  background-color: #1d6ee9;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.button-dice-blue {
+  position: absolute;
+  display: block;
+  margin-top: 70px;
+  margin-left: 100px;
+  padding: 15px 25px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #2828d6;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  display: none;
+}
+
+.button-dice-blue:hover {
+  background-color: #172c6d;
+}
+
+.button-dice-blue:active {
+  background-color: #172c6d;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.button-dice-yellow {
+  position: absolute;
+  display: block;
+  margin-top: 140px;
+  margin-left: 100px;
+  padding: 15px 25px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #8b8b00;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  display: none;
+}
+
+.button-dice-yellow:hover {
+  background-color: #2e3b08;
+}
+
+.button-dice-yellow:active {
+  background-color: #70882d;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.button-dice-green {
+  position: absolute;
+  display: block;
+  margin-top: 210px;
+  margin-left: 100px;
+  padding: 15px 25px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #49974a;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  display: none;
+}
+
+.button-dice-green:hover {
+  background-color: #1e792a;
+}
+
+.button-dice-green:active {
+  background-color: #1e792a;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.button-dice-red {
+  position: absolute;
+  display: block;
+  margin-top: 280px;
+  margin-left: 100px;
+  padding: 15px 25px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #b62d29;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  display: none;
+}
+
+.button-dice-red:hover {
+  background-color: #812e19;
+}
+
+.button-dice-red:active {
+  background-color: #812e19;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#board-container {
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  background-image: url("https://media.istockphoto.com/id/649901550/vector/parchis.jpg?s=612x612&w=0&k=20&c=XACS-15HEUxsngmQbXBDWOCREAB0yScUL2DwFsuK4TQ=");
+  background-size: 600px;
+}
+
+.blue-pawn {
+  position: absolute;
+  display: none;
+}
+
+.yellow-pawn {
+  position: absolute;
+  display: none;
+  
+}
+
+.green-pawn {
+  position: absolute;
+  display: none;
+}
+
+.red-pawn {
+  position: absolute;
+  display: none;
+}
+
+.base-blue {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  margin-top: 78px;
+  margin-left: 80px;
+}
+
+.base-blue > div {
+  float: left;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+.base-yellow
+ {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  margin-top: 80px;
+  margin-left: 450px;
+}
+.base-yellow > div 
+{
+  float: left;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+.base-green {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  margin-top: 450px;
+  margin-left: 450px;
+}
+
+.base-green > div {
+  float: left;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.base-red {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  margin-top: 448px;
+  margin-left: 80px;
+}
+
+.base-red > div {
+  float: left;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.grid-top {
+  position: absolute;
+  margin-left: 230px;
+  margin-top: 15px;
+  width: 170px;
+  height: 225px;
+}
+
+.grid-top > div {
+  border: 1px solid rgba(0, 0, 0, 0);
+  width: 45px;
+  height: 26px;
+  float: left;
+}
+
+.grid-bottom {
+  position: absolute;
+  margin-left: 230px;
+  margin-top: 357px;
+  width: 170px;
+  height: 225px;
+}
+
+.grid-bottom > div {
+  border: 1px solid rgba(0, 0, 0, 0);
+  width: 45px;
+  height: 26px;
+  float: left;
+}
+
+.grid-left {
+  position: absolute;
+  margin-left: 18px;
+  margin-top: 229px;
+  width: 225px;
+  height: 170px;
+}
+
+.grid-left > div {
+  border: 1px solid rgba(0, 0, 0, 0);
+  width: 26px;
+  height: 45px;
+  float: left;
+}
+
+.grid-right {
+  position: absolute;
+  margin-left: 358px;
+  margin-top: 229px;
+  width: 225px;
+  height: 170px;
+}
+
+.grid-right > div {
+  border: 1px solid rgba(0, 0, 0, 0);
+  width: 26px;
+  height: 45px;
+  float: left;
+}
+
+.grid-center-blue {
+  border: 1px solid rgba(0, 0, 0, 0);
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  margin-left: 265px;
+  margin-top: 242px;
+}
+
+.grid-center-yellow {
+  border: 1px solid rgba(0, 0, 0, 0);
+  position: absolute;
+  width: 30px;
+  height: 70px;
+  margin-left: 328px;
+  margin-top: 263px;
+}
+
+.grid-center-green {
+  border: 1px solid rgba(0, 0, 0, 0);
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  margin-left: 265px;
+  margin-top: 327px;
+}
+
+.grid-center-red {
+  border: 1px solid rgba(0, 0, 0, 0);
+  position: absolute;
+  width: 30px;
+  height: 70px;
+  margin-left: 243px;
+  margin-top: 263px;
+}
+
+#dice {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: black;
+  margin-left: 1050px;
+  border-radius: 20px;
+  display: none;
+}
+
+#dot1 {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 25px;
+  margin-top: 20px;
+}
+
+#dot2 {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 25px;
+  margin-top: 62px;
+}
+
+#dot3 {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 25px;
+  margin-top: 105px;
+}
+
+#dot4 {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 102px;
+  margin-top: 20px;
+}
+
+#dot5 {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 102px;
+  margin-top: 62px;
+}
+
+#dot6 {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 102px;
+  margin-top: 105px;
+}
+
+#dot7 {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 63px;
+  margin-top: 62px;
+}
+
+.container-start-message {
+  display: block;
+  position: absolute;
+  margin-left: 985px;
+  margin-top: 170px;
+  width: 275px;
+  height: 325px;
+  padding: 0 30px 0 30px;
+  color: white;
+  text-align: left;
+  border-radius: 20px;
+  display: none;
+}
+.container-end-message {
+  display: block;
+  position: relative;
+  text-align: center !important;
+  margin-left: 340px;
+  margin-top: 0;
+  width: 600px;
+  height: 600px;
+  padding: 30px;
+  background-color: #027575;
+  color: white !important;
+  text-align: left;
+  border-radius: 20px;
+  display: none;
+}
+</style>
+<body>
+  <h1>Ludo Board Game</h1>
+  <button id="button" type="button">Click to Start</button>
+  <button id="blue-play" class="button-dice-blue" type="button">ROLL DICE</button>
+  <button id="yellow-play" class="button-dice-yellow" type="button">ROLL DICE</button>
+  <button id="green-play" class="button-dice-green" type="button">ROLL DICE</button>
+  <button id="red-play" class="button-dice-red" type="button">ROLL DICE</button>
+  <div id="dice">
+    <div id="dot1"></div>
+    <div id="dot2"></div>
+    <div id="dot3"></div>
+    <div id="dot4"></div>
+    <div id="dot5"></div>
+    <div id="dot6"></div>
+    <div id="dot7"></div>
+  </div>
+  <div id="start-message" class="container-start-message box1">
+     </div>
+  <div id="blue-message" class="container-start-message box1">
+    </div>
+  <div id="yellow-message" class="container-start-message box2">
+      </div>
+  <div id="green-message" class="container-start-message box3">
+   </div>
+  <div id="red-message" class="container-start-message box4">
+     </div>
+  <div id="blue-win-message" class="container-end-message">
+    </div>
+  <div id="yellow-win-message" class="container-end-message">
+    </div>
+  <div id="green-win-message" class="container-end-message">
+    </div>
+  <div id="red-win-message" class="container-end-message">
+    </div>
+  <div id="board-container">
+    <div class="base-blue">
+      <div id="board-blue-base-1">
+        <img id="b1" class="blue-pawn" src="yellowpawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-blue-base-2">
+        <img id="b2" class="blue-pawn" src="yellowpawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-blue-base-3">
+        <img id="b3" class="blue-pawn" src="yellowpawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-blue-base-4">
+        <img id="b4" class="blue-pawn" src="yellowpawn.jpg" weight="22px" height="28px">
+      </div>
+    </div>
+    <div class="base-yellow">
+      <div id="board-yellow-base-1">
+        <img id="y1" class="yellow-pawn" src="bluepawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-yellow-base-2">
+        <img id="y2" class="yellow-pawn" src="bluepawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-yellow-base-3">
+        <img id="y3" class="yellow-pawn" src="bluepawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-yellow-base-4">
+        <img id="y4" class="yellow-pawn" src="bluepawn.jpg" weight="22px" height="28px">
+      </div>
+    </div>
+    <div class="base-green">
+      <div id="board-green-base-1">
+        <img id="g1" class="green-pawn" src="greenpawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-green-base-2">
+        <img id="g2" class="green-pawn" src="greenpawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-green-base-3">
+        <img id="g3" class="green-pawn" src="greenpawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-green-base-4">
+        <img id="g4" class="green-pawn" src="greenpawn.jpg" weight="22px" height="28px">
+      </div>
+    </div>
+    <div class="base-red">
+      <div id="board-red-base-1">
+        <img id="r1" class="red-pawn" src="redpawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-red-base-2">
+        <img id="r2" class="red-pawn" src="redpawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-red-base-3">
+        <img id="r3" class="red-pawn" src="redpawn.jpg" weight="22px" height="28px">
+      </div>
+      <div id="board-red-base-4">
+        <img id="r4" class="red-pawn" src="redpawn.jpg" weight="22px" height="28px">
+      </div>
+    </div>
+    <div class="grid-top">
+      <div id="board-pos-18"></div>
+      <div id="board-pos-17"></div>
+      <div id="board-pos-16"></div>
+      <div id="board-pos-19"></div>
+      <div id="board-blue-18"></div>
+      <div id="board-pos-15"></div>
+      <div id="board-pos-20"></div>
+      <div id="board-blue-19"></div>
+      <div id="board-pos-14"></div>
+      <div id="board-pos-21"></div>
+      <div id="board-blue-20"></div>
+      <div id="board-pos-13"></div>
+      <div id="board-pos-22"></div>
+      <div id="board-blue-21"></div>
+      <div id="board-pos-12"></div>
+      <div id="board-pos-23"></div>
+      <div id="board-blue-22"></div>
+      <div id="board-pos-11"></div>
+      <div id="board-pos-24"></div>
+      <div id="board-blue-23"></div>
+      <div id="board-pos-10"></div>
+      <div id="board-pos-25"></div>
+      <div id="board-blue-24"></div>
+      <div id="board-pos-9"></div>
+    </div>
+    <div class="grid-bottom">
+      <div id="board-pos-43"></div>
+      <div id="board-green-58"></div>
+      <div id="board-pos-59"></div>
+      <div id="board-pos-44"></div>
+      <div id="board-green-57"></div>
+      <div id="board-pos-58"></div>
+      <div id="board-pos-45"></div>
+      <div id="board-green-56"></div>
+      <div id="board-pos-57"></div>
+      <div id="board-pos-46"></div>
+      <div id="board-green-55"></div>
+      <div id="board-pos-56"></div>
+      <div id="board-pos-47"></div>
+      <div id="board-green-54"></div>
+      <div id="board-pos-55"></div>
+      <div id="board-pos-48"></div>
+      <div id="board-green-53"></div>
+      <div id="board-pos-54"></div>
+      <div id="board-pos-49"></div>
+      <div id="board-green-52"></div>
+      <div id="board-pos-53"></div>
+      <div id="board-pos-50"></div>
+      <div id="board-pos-51"></div>
+      <div id="board-pos-52"></div>
+    </div>
+    <div class="grid-right">
+      <div id="board-pos-8"></div>
+      <div id="board-pos-7"></div>
+      <div id="board-pos-6"></div>
+      <div id="board-pos-5"></div>
+      <div id="board-pos-4"></div>
+      <div id="board-pos-3"></div>
+      <div id="board-pos-2"></div>
+      <div id="board-pos-1"></div>
+      <div id="board-yellow-75"></div>
+      <div id="board-yellow-74"></div>
+      <div id="board-yellow-73"></div>
+      <div id="board-yellow-72"></div>
+      <div id="board-yellow-71"></div>
+      <div id="board-yellow-70"></div>
+      <div id="board-yellow-69"></div>
+      <div id="board-pos-68"></div>
+      <div id="board-pos-60"></div>
+      <div id="board-pos-61"></div>
+      <div id="board-pos-62"></div>
+      <div id="board-pos-63"></div>
+      <div id="board-pos-64"></div>
+      <div id="board-pos-65"></div>
+      <div id="board-pos-66"></div>
+      <div id="board-pos-67"></div>
+    </div>
+    <div class="grid-left">
+      <div id="board-pos-33"></div>
+      <div id="board-pos-32"></div>
+      <div id="board-pos-31"></div>
+      <div id="board-pos-30"></div>
+      <div id="board-pos-29"></div>
+      <div id="board-pos-28"></div>
+      <div id="board-pos-27"></div>
+      <div id="board-pos-26"></div>
+      <div id="board-pos-34"></div>
+      <div id="board-red-35"></div>
+      <div id="board-red-36"></div>
+      <div id="board-red-37"></div>
+      <div id="board-red-38"></div>
+      <div id="board-red-39"></div>
+      <div id="board-red-40"></div>
+      <div id="board-red-41"></div>
+      <div id="board-pos-35"></div>
+      <div id="board-pos-36"></div>
+      <div id="board-pos-37"></div>
+      <div id="board-pos-38"></div>
+      <div id="board-pos-39"></div>
+      <div id="board-pos-40"></div>
+      <div id="board-pos-41"></div>
+      <div id="board-pos-42"></div>
+    </div>
+    <div class="grid-center-blue">
+      <div id="board-blue-25"></div>
+    </div>
+    <div class="grid-center-yellow">
+      <div id="board-yellow-76"></div>
+    </div>
+    <div class="grid-center-green">
+      <div id="board-green-59"></div>
+    </div>
+    <div class="grid-center-red">
+      <div id="board-red-42"></div>
+    </div>
+  </div>
+</body>
+<script>
+const startButton = document.getElementById('button');
+const bluePlayButton = document.getElementById('blue-play');
+const yellowPlayButton = document.getElementById('yellow-play');
+const greenPlayButton = document.getElementById('green-play');
+const redPlayButton = document.getElementById('red-play');
+const startMessage = document.getElementById('start-message');
+const blueMessage = document.getElementById('blue-message');
+const yellowMessage = document.getElementById('yellow-message');
+const greenMessage = document.getElementById('green-message');
+const redMessage = document.getElementById('red-message');
+const blue1 = document.getElementById('b1');
+const blue2 = document.getElementById('b2');
+const blue3 = document.getElementById('b3');
+const blue4 = document.getElementById('b4');
+const yellow1 = document.getElementById('y1');
+const yellow2 = document.getElementById('y2');
+const yellow3 = document.getElementById('y3');
+const yellow4 = document.getElementById('y4');
+const green1 = document.getElementById('g1');
+const green2 = document.getElementById('g2');
+const green3 = document.getElementById('g3');
+const green4 = document.getElementById('g4');
+const red1 = document.getElementById('r1');
+const red2 = document.getElementById('r2');
+const red3 = document.getElementById('r3');
+const red4 = document.getElementById('r4');
+
+startButton.addEventListener('click', () => {
+  startButton.style.display = 'none';
+  bluePlayButton.style.display = 'block';
+  yellowPlayButton.style.display = 'none';
+  greenPlayButton.style.display = 'none';
+  redPlayButton.style.display = 'none';
+  startMessage.style.display = 'block';
+  for (let i = 1; i <= 4; i += 1) {
+    document.getElementById('b' + i).style.display = 'block';
+    document.getElementById('y' + i).style.display = 'block';
+    document.getElementById('g' + i).style.display = 'block';
+    document.getElementById('r' + i).style.display = 'block';
+  }
+});
+
+bluePlayButton.addEventListener('click', () => {
+  rollDice();
+  bluePlayButton.style.display = 'none';
+});
+
+yellowPlayButton.addEventListener('click', () => {
+  rollDice();
+  yellowPlayButton.style.display = 'none';
+});
+
+greenPlayButton.addEventListener('click', () => {
+  rollDice();
+  greenPlayButton.style.display = 'none';
+});
+
+redPlayButton.addEventListener('click', () => {
+  rollDice();
+  redPlayButton.style.display = 'none';
+});
+
+
+
+blue1.addEventListener('click', () => {
+  blue1MovementCondition();
+  yellowPlayButton.style.display = 'block';
+  startMessage.style.display = 'none';
+  yellowMessage.style.display = 'block';
+  blueEndGame();
+});
+
+blue2.addEventListener('click', () => {
+  blue2MovementCondition();
+  yellowPlayButton.style.display = 'block';
+  startMessage.style.display = 'none';
+  yellowMessage.style.display = 'block';
+  blueEndGame();
+});
+
+blue3.addEventListener('click', () => {
+  blue3MovementCondition();
+  yellowPlayButton.style.display = 'block';
+  startMessage.style.display = 'none';
+  yellowMessage.style.display = 'block';
+  blueEndGame();
+});
+
+blue4.addEventListener('click', () => {
+  blue4MovementCondition();
+  yellowPlayButton.style.display = 'block';
+  startMessage.style.display = 'none';
+  yellowMessage.style.display = 'block';
+  blueEndGame();
+});
+
+yellow1.addEventListener('click', () => {
+  yellow1MovementCondition();
+  greenPlayButton.style.display = 'block';
+  yellowMessage.style.display = 'none';
+  greenMessage.style.display = 'block';
+  yellowEndGame();
+});
+
+yellow2.addEventListener('click', () => {
+  yellow2MovementCondition();
+  greenPlayButton.style.display = 'block';
+  yellowMessage.style.display = 'none';
+  greenMessage.style.display = 'block';
+  yellowEndGame();
+});
+
+yellow3.addEventListener('click', () => {
+  yellow3MovementCondition();
+  greenPlayButton.style.display = 'block';
+  yellowMessage.style.display = 'none';
+  greenMessage.style.display = 'block';
+  yellowEndGame();
+});
+
+yellow4.addEventListener('click', () => {
+  yellow4MovementCondition();
+  greenPlayButton.style.display = 'block';
+  yellowMessage.style.display = 'none';
+  greenMessage.style.display = 'block';
+  yellowEndGame();
+});
+
+green1.addEventListener('click', () => {
+  green1MovementCondition();
+  redPlayButton.style.display = 'block';
+  greenMessage.style.display = 'none';
+  redMessage.style.display = 'block';
+  greenEndGame();
+});
+
+green2.addEventListener('click', () => {
+  green2MovementCondition();
+  redPlayButton.style.display = 'block';
+  greenMessage.style.display = 'none';
+  redMessage.style.display = 'block';
+  greenEndGame();
+});
+
+green3.addEventListener('click', () => {
+  green3MovementCondition();
+  redPlayButton.style.display = 'block';
+  greenMessage.style.display = 'none';
+  redMessage.style.display = 'block';
+  greenEndGame();
+});
+
+green4.addEventListener('click', () => {
+  green4MovementCondition();
+  redPlayButton.style.display = 'block';
+  greenMessage.style.display = 'none';
+  redMessage.style.display = 'block';
+  greenEndGame();
+});
+
+red1.addEventListener('click', () => {
+  red1MovementCondition();
+  bluePlayButton.style.display = 'block';
+  redMessage.style.display = 'none';
+  blueMessage.style.display = 'block';
+  redEndGame();
+});
+
+red2.addEventListener('click', () => {
+  red2MovementCondition();
+  bluePlayButton.style.display = 'block';
+  redMessage.style.display = 'none';
+  blueMessage.style.display = 'block';
+  redEndGame();
+});
+
+red3.addEventListener('click', () => {
+  red3MovementCondition();
+  bluePlayButton.style.display = 'block';
+  redMessage.style.display = 'none';
+  blueMessage.style.display = 'block';
+  redEndGame();
+});
+
+red4.addEventListener('click', () => {
+  red4MovementCondition();
+  bluePlayButton.style.display = 'block';
+  redMessage.style.display = 'none';
+  blueMessage.style.display = 'block';
+  redEndGame();
+});
+const setup = {
+  colors: ['blue', 'yellow', 'green', 'red'],
+  initialPosition: [21, 4, 55, 38],
+  finalPosition: [17, 68, 51, 34],
+  finishLine: [25, 76, 59, 42]
+};
+const blueWinMessage = document.getElementById('blue-win-message');
+const yellowWinMessage = document.getElementById('yellow-win-message');
+const greenWinMessage = document.getElementById('green-win-message');
+const redWinMessage = document.getElementById('red-win-message');
+let blue1InitialPosition = setup.initialPosition[0];
+let blue2InitialPosition = setup.initialPosition[0];
+let blue3InitialPosition = setup.initialPosition[0];
+let blue4InitialPosition = setup.initialPosition[0];
+let yellow1InitialPosition = setup.initialPosition[1];
+let yellow2InitialPosition = setup.initialPosition[1];
+let yellow3InitialPosition = setup.initialPosition[1];
+let yellow4InitialPosition = setup.initialPosition[1];
+let green1InitialPosition = setup.initialPosition[2];
+let green2InitialPosition = setup.initialPosition[2];
+let green3InitialPosition = setup.initialPosition[2];
+let green4InitialPosition = setup.initialPosition[2];
+let red1InitialPosition = setup.initialPosition[3];
+let red2InitialPosition = setup.initialPosition[3];
+let red3InitialPosition = setup.initialPosition[3];
+let red4InitialPosition = setup.initialPosition[3];
+let blue1NewPosition = 'board-pos-' + blue1InitialPosition;
+let blue2NewPosition = 'board-pos-' + blue2InitialPosition;
+let blue3NewPosition = 'board-pos-' + blue3InitialPosition;
+let blue4NewPosition = 'board-pos-' + blue4InitialPosition;
+let yellow1NewPosition = 'board-pos-' + yellow1InitialPosition;
+let yellow2NewPosition = 'board-pos-' + yellow2InitialPosition;
+let yellow3NewPosition = 'board-pos-' + yellow3InitialPosition;
+let yellow4NewPosition = 'board-pos-' + yellow4InitialPosition;
+let green1NewPosition = 'board-pos-' + green1InitialPosition;
+let green2NewPosition = 'board-pos-' + green2InitialPosition;
+let green3NewPosition = 'board-pos-' + green3InitialPosition;
+let green4NewPosition = 'board-pos-' + green4InitialPosition;
+let red1NewPosition = 'board-pos-' + red1InitialPosition;
+let red2NewPosition = 'board-pos-' + red2InitialPosition;
+let red3NewPosition = 'board-pos-' + red3InitialPosition;
+let red4NewPosition = 'board-pos-' + red4InitialPosition;
+let clickBlue1 = 0;
+let clickBlue2 = 0;
+let clickBlue3 = 0;
+let clickBlue4 = 0;
+let clickYellow1 = 0;
+let clickYellow2 = 0;
+let clickYellow3 = 0;
+let clickYellow4 = 0;
+let clickGreen1 = 0;
+let clickGreen2 = 0;
+let clickGreen3 = 0;
+let clickGreen4 = 0;
+let clickRed1 = 0;
+let clickRed2 = 0;
+let clickRed3 = 0;
+let clickRed4 = 0;
+
+
+// BLUE TEAM'S MOVEMENT FUNCTIONS
+
+function blue1MovementCondition() {
+  if (document.getElementById('board-blue-base-1').children.length === 0) {
+    moveBlue1();
+  }
+  if (document.getElementById('board-blue-base-1').children.length > 0 && diceResult === 1 || document.getElementById('board-blue-base-1').children.length > 0 && diceResult === 6) 
+  {
+    document.getElementById(blue1NewPosition).appendChild(document.getElementById('b1'));
+  }
+}
+function blue2MovementCondition() {
+  if (document.getElementById('board-blue-base-2').children.length === 0) {
+    moveBlue2();
+  }
+  if (document.getElementById('board-blue-base-2').children.length > 0 && diceResult === 1 || document.getElementById('board-blue-base-2').children.length > 0 && diceResult === 6) {
+    document.getElementById(blue2NewPosition).appendChild(document.getElementById('b2'));
+  }
+}
+function blue3MovementCondition() {
+  if (document.getElementById('board-blue-base-3').children.length === 0) {
+    moveBlue3();
+  }
+  if (document.getElementById('board-blue-base-3').children.length > 0 && diceResult === 1 || document.getElementById('board-blue-base-3').children.length > 0 && diceResult === 6) {
+    document.getElementById(blue3NewPosition).appendChild(document.getElementById('b3'));
+  }
+}
+function blue4MovementCondition() {
+  if (document.getElementById('board-blue-base-4').children.length === 0) {
+    moveBlue4();
+  }
+  if (document.getElementById('board-blue-base-4').children.length > 0 && diceResult === 1 || document.getElementById('board-blue-base-4').children.length > 0 && diceResult === 6) {
+    document.getElementById(blue4NewPosition).appendChild(document.getElementById('b4'));
+  }
+}
+function blue1ResetBoardCount() {
+  if (blue1InitialPosition === 69) {
+    blue1InitialPosition = 1;
+    blue1NewPosition = 'board-pos-' + blue1InitialPosition;
+  } else if (blue1InitialPosition === 70) {
+    blue1InitialPosition = 2;
+    blue1NewPosition = 'board-pos-' + blue1InitialPosition;
+  } else if (blue1InitialPosition === 71) {
+    blue1InitialPosition = 3;
+    blue1NewPosition = 'board-pos-' + blue1InitialPosition;
+  } else if (blue1InitialPosition === 72) {
+    blue1InitialPosition = 4;
+    blue1NewPosition = 'board-pos-' + blue1InitialPosition;
+  } else if (blue1InitialPosition === 73) {
+    blue1InitialPosition = 5;
+    blue1NewPosition = 'board-pos-' + blue1InitialPosition;
+  } else if (blue1InitialPosition === 74) {
+    blue1InitialPosition = 6;
+    blue1NewPosition = 'board-pos-' + blue1InitialPosition;
+  }
+}
+function blue2ResetBoardCount() {
+  if (blue2InitialPosition === 69) {
+    blue2InitialPosition = 1;
+    blue2NewPosition = 'board-pos-' + blue2InitialPosition;
+  } else if (blue2InitialPosition === 70) {
+    blue2InitialPosition = 2;
+    blue2NewPosition = 'board-pos-' + blue2InitialPosition;
+  } else if (blue2InitialPosition === 71) {
+    blue2InitialPosition = 3;
+    blue2NewPosition = 'board-pos-' + blue2InitialPosition;
+  } else if (blue2InitialPosition === 72) {
+    blue2InitialPosition = 4;
+    blue2NewPosition = 'board-pos-' + blue2InitialPosition;
+  } else if (blue2InitialPosition === 73) {
+    blue2InitialPosition = 5;
+    blue2NewPosition = 'board-pos-' + blue2InitialPosition;
+  } else if (blue2InitialPosition === 74) {
+    blue2InitialPosition = 6;
+    blue2NewPosition = 'board-pos-' + blue2InitialPosition;
+  }
+}
+function blue3ResetBoardCount() {
+  if (blue3InitialPosition === 69) {
+    blue3InitialPosition = 1;
+    blue3NewPosition = 'board-pos-' + blue3InitialPosition;
+  } else if (blue3InitialPosition === 70) {
+    blue3InitialPosition = 2;
+    blue3NewPosition = 'board-pos-' + blue3InitialPosition;
+  } else if (blue3InitialPosition === 71) {
+    blue3InitialPosition = 3;
+    blue3NewPosition = 'board-pos-' + blue3InitialPosition;
+  } else if (blue3InitialPosition === 72) {
+    blue3InitialPosition = 4;
+    blue3NewPosition = 'board-pos-' + blue3InitialPosition;
+  } else if (blue3InitialPosition === 73) {
+    blue3InitialPosition = 5;
+    blue3NewPosition = 'board-pos-' + blue3InitialPosition;
+  } else if (blue3InitialPosition === 74) {
+    blue3InitialPosition = 6;
+    blue3NewPosition = 'board-pos-' + blue3InitialPosition;
+  }
+}
+function blue4ResetBoardCount() {
+  if (blue4InitialPosition === 69) {
+    blue4InitialPosition = 1;
+    blue4NewPosition = 'board-pos-' + blue4InitialPosition;
+  } else if (blue4InitialPosition === 70) {
+    blue4InitialPosition = 2;
+    blue4NewPosition = 'board-pos-' + blue4InitialPosition;
+  } else if (blue4InitialPosition === 71) {
+    blue4InitialPosition = 3;
+    blue4NewPosition = 'board-pos-' + blue4InitialPosition;
+  } else if (blue4InitialPosition === 72) {
+    blue4InitialPosition = 4;
+    blue4NewPosition = 'board-pos-' + blue4InitialPosition;
+  } else if (blue4InitialPosition === 73) {
+    blue4InitialPosition = 5;
+    blue4NewPosition = 'board-pos-' + blue4InitialPosition;
+  } else if (blue4InitialPosition === 74) {
+    blue4InitialPosition = 6;
+    blue4NewPosition = 'board-pos-' + blue4InitialPosition;
+  }
+}
+function blue1FinalPath() {
+  if (clickBlue1 > 10 && blue1InitialPosition === 18) {
+    blue1NewPosition = 'board-blue-' + blue1InitialPosition;
+  } else if (clickBlue1 > 10 && blue1InitialPosition === 19) {
+    blue1NewPosition = 'board-blue-' + blue1InitialPosition;
+  } else if (clickBlue1 > 10 && blue1InitialPosition === 20) {
+    blue1NewPosition = 'board-blue-' + blue1InitialPosition;
+  } else if (clickBlue1 > 10 && blue1InitialPosition === 21) {
+    blue1NewPosition = 'board-blue-' + blue1InitialPosition;
+  } else if (clickBlue1 > 10 && blue1InitialPosition === 22) {
+    blue1NewPosition = 'board-blue-' + blue1InitialPosition;
+  } else if (clickBlue1 > 10 && blue1InitialPosition === 23) {
+    blue1NewPosition = 'board-blue-' + blue1InitialPosition;
+  } else if (clickBlue1 > 10 && blue1InitialPosition === 24) {
+    blue1NewPosition = 'board-blue-' + blue1InitialPosition;
+  }
+}
+function blue2FinalPath() {
+  if (clickBlue2 > 10 && blue2InitialPosition === 18) {
+    blue2NewPosition = 'board-blue-' + blue2InitialPosition;
+  } else if (clickBlue2 > 10 && blue2InitialPosition === 19) {
+    blue2NewPosition = 'board-blue-' + blue2InitialPosition;
+  } else if (clickBlue2 > 10 && blue2InitialPosition === 20) {
+    blue2NewPosition = 'board-blue-' + blue2InitialPosition;
+  } else if (clickBlue2 > 10 && blue2InitialPosition === 21) {
+    blue2NewPosition = 'board-blue-' + blue2InitialPosition;
+  } else if (clickBlue2 > 10 && blue2InitialPosition === 22) {
+    blue2NewPosition = 'board-blue-' + blue2InitialPosition;
+  } else if (clickBlue2 > 10 && blue2InitialPosition === 23) {
+    blue2NewPosition = 'board-blue-' + blue2InitialPosition;
+  } else if (clickBlue2 > 10 && blue2InitialPosition === 24) {
+    blue2NewPosition = 'board-blue-' + blue2InitialPosition;
+  }
+}
+function blue3FinalPath() {
+  if (clickBlue3 > 10 && blue3InitialPosition === 18) {
+    blue3NewPosition = 'board-blue-' + blu3InitialPosition;
+  } else if (clickBlue3 > 10 && blu3InitialPosition === 19) {
+    blue3NewPosition = 'board-blue-' + blue3InitialPosition;
+  } else if (clickBlue3 > 10 && blue3InitialPosition === 20) {
+    blue3NewPosition = 'board-blue-' + blue3InitialPosition;
+  } else if (clickBlue3 > 10 && blue3InitialPosition === 21) {
+    blue3NewPosition = 'board-blue-' + blue3InitialPosition;
+  } else if (clickBlue3 > 10 && blue3InitialPosition === 22) {
+    blue3NewPosition = 'board-blue-' + blue3InitialPosition;
+  } else if (clickBlue3 > 10 && blue3InitialPosition === 23) {
+    blue3NewPosition = 'board-blue-' + blue3InitialPosition;
+  } else if (clickBlue3 > 10 && blue3InitialPosition === 24) {
+    blue3NewPosition = 'board-blue-' + blue3InitialPosition;
+  }
+}
+
+function blue4FinalPath() {
+  if (clickBlue4 > 10 && blue4InitialPosition === 18) {
+    blue4NewPosition = 'board-blue-' + blue4InitialPosition;
+  } else if (clickBlue4 > 10 && blue4InitialPosition === 19) {
+    blue4NewPosition = 'board-blue-' + blue4InitialPosition;
+  } else if (clickBlue4 > 10 && blue4InitialPosition === 20) {
+    blue4NewPosition = 'board-blue-' + blue4InitialPosition;
+  } else if (clickBlue4 > 10 && blue4InitialPosition === 21) {
+    blue4NewPosition = 'board-blue-' + blue4InitialPosition;
+  } else if (clickBlue4 > 10 && blue4InitialPosition === 22) {
+    blue4NewPosition = 'board-blue-' + blue4InitialPosition;
+  } else if (clickBlue4 > 10 && blue4InitialPosition === 23) {
+    blue4NewPosition = 'board-blue-' + blue4InitialPosition;
+  } else if (clickBlue4 > 10 && blue4InitialPosition === 24) {
+    blue4NewPosition = 'board-blue-' + blue4InitialPosition;
+  }
+}
+
+function moveBlue1() {
+  if (blue1NewPosition.search('blue') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-blue-25').appendChild(document.getElementById('b1'));
+    }
+    return;
+  }
+  clickBlue1 += 1;
+  blue1InitialPosition += diceResult;
+  blue1NewPosition = 'board-pos-' + blue1InitialPosition;
+  blue1ResetBoardCount();
+  blue1FinalPath();
+  document.getElementById(blue1NewPosition).appendChild(document.getElementById('b1'));
+  diceResult = 0;
+}
+
+function moveBlue2() {
+  if (blue2NewPosition.search('blue') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-blue-25').appendChild(document.getElementById('b2'));
+    }
+    return;
+  }
+  clickBlue2 += 1;
+  blue2InitialPosition += diceResult;
+  blue2NewPosition = 'board-pos-' + blue2InitialPosition;
+  blue2ResetBoardCount();
+  blue2FinalPath();
+  document.getElementById(blue2NewPosition).appendChild(document.getElementById('b2'));
+  diceResult = 0;
+}
+
+function moveBlue3() {
+  if (blue3NewPosition.search('blue') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-blue-25').appendChild(document.getElementById('b3'));
+    }
+    return;
+  }
+  clickBlue3 += 1;
+  blue3InitialPosition += diceResult;
+  blue3NewPosition = 'board-pos-' + blue3InitialPosition;
+  blue3ResetBoardCount();
+  blue3FinalPath();
+  document.getElementById(blue3NewPosition).appendChild(document.getElementById('b3'));
+  diceResult = 0;
+}
+
+function moveBlue4() {
+  if (blue4NewPosition.search('blue') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-blue-25').appendChild(document.getElementById('b4'));
+    }
+    return;
+  }
+  clickBlue4 += 1;
+  blue4InitialPosition += diceResult;
+  blue4NewPosition = 'board-pos-' + blue4InitialPosition;
+  blue4ResetBoardCount();
+  blue4FinalPath();
+  document.getElementById(blue4NewPosition).appendChild(document.getElementById('b4'));
+  diceResult = 0;
+}
+
+
+// YELLOW TEAM'S MOVEMENT FUNCTIONS
+
+function yellow1MovementCondition() {
+  if (document.getElementById('board-yellow-base-1').children.length === 0) {
+    moveYellow1();
+  }
+  if (document.getElementById('board-yellow-base-1').children.length > 0 && diceResult === 1 || document.getElementById('board-yellow-base-1').children.length > 0 && diceResult === 6) {
+    document.getElementById(yellow1NewPosition).appendChild(document.getElementById('y1'));
+  }
+}
+
+function yellow2MovementCondition() {
+  if (document.getElementById('board-yellow-base-2').children.length === 0) {
+    moveYellow2();
+  }
+  if (document.getElementById('board-yellow-base-2').children.length > 0 && diceResult === 1 || document.getElementById('board-yellow-base-2').children.length > 0 && diceResult === 6) {
+    document.getElementById(yellow2NewPosition).appendChild(document.getElementById('y2'));
+  }
+}
+
+function yellow3MovementCondition() {
+  if (document.getElementById('board-yellow-base-3').children.length === 0) {
+    moveYellow3();
+  }
+  if (document.getElementById('board-yellow-base-3').children.length > 0 && diceResult === 1 || document.getElementById('board-yellow-base-3').children.length > 0 && diceResult === 6) {
+    document.getElementById(yellow3NewPosition).appendChild(document.getElementById('y3'));
+  }
+}
+
+function yellow4MovementCondition() {
+  if (document.getElementById('board-yellow-base-4').children.length === 0) {
+    moveYellow4();
+  }
+  if (document.getElementById('board-yellow-base-4').children.length > 0 && diceResult === 1 || document.getElementById('board-yellow-base-4').children.length > 0 && diceResult === 6) {
+    document.getElementById(yellow4NewPosition).appendChild(document.getElementById('y4'));
+  }
+}
+
+function yellow1FinalPath() {
+  if (clickYellow1 > 10 && yellow1InitialPosition === 69) {
+    yellow1NewPosition = 'board-yellow-' + yellow1InitialPosition;
+  } else if (clickYellow1 > 10 && yellow1InitialPosition === 70) {
+    yellow1NewPosition = 'board-yellow-' + yellow1InitialPosition;
+  } else if (clickYellow1 > 10 && yellow1InitialPosition === 71) {
+    yellow1NewPosition = 'board-yellow-' + yellow1InitialPosition;
+  } else if (clickYellow1 > 10 && yellow1InitialPosition === 72) {
+    yellow1NewPosition = 'board-yellow-' + yellow1InitialPosition;
+  } else if (clickYellow1 > 10 && yellow1InitialPosition === 73) {
+    yellow1NewPosition = 'board-yellow-' + yellow1InitialPosition;
+  } else if (clickYellow1 > 10 && yellow1InitialPosition === 74) {
+    yellow1NewPosition = 'board-yellow-' + yellow1InitialPosition;
+  } else if (clickYellow1 > 10 && yellow1InitialPosition === 75) {
+    yellow1NewPosition = 'board-yellow-' + yellow1InitialPosition;
+  }
+}
+
+function yellow2FinalPath() {
+  if (clickYellow2 > 10 && yellow2InitialPosition === 69) {
+    yellow2NewPosition = 'board-yellow-' + yellow2InitialPosition;
+  } else if (clickYellow2 > 10 && yellow2InitialPosition === 70) {
+    yellow2NewPosition = 'board-yellow-' + yellow2InitialPosition;
+  } else if (clickYellow2 > 10 && yellow2InitialPosition === 71) {
+    yellow2NewPosition = 'board-yellow-' + yellow2InitialPosition;
+  } else if (clickYellow2 > 10 && yellow2InitialPosition === 72) {
+    yellow2NewPosition = 'board-yellow-' + yellow2InitialPosition;
+  } else if (clickYellow2 > 10 && yellow2InitialPosition === 73) {
+    yellow2NewPosition = 'board-yellow-' + yellow2InitialPosition;
+  } else if (clickYellow2 > 10 && yellow2InitialPosition === 74) {
+    yellow2NewPosition = 'board-yellow-' + yellow2InitialPosition;
+  } else if (clickYellow2 > 10 && yellow2InitialPosition === 75) {
+    yellow2NewPosition = 'board-yellow-' + yellow2InitialPosition;
+  }
+}
+
+function yellow3FinalPath() {
+  if (clickYellow3 > 10 && yellow3InitialPosition === 69) {
+    yellow3NewPosition = 'board-yellow-' + yellow3InitialPosition;
+  } else if (clickYellow3 > 10 && yellow3InitialPosition === 70) {
+    yellow3NewPosition = 'board-yellow-' + yellow3InitialPosition;
+  } else if (clickYellow3 > 10 && yellow3InitialPosition === 71) {
+    yellow3NewPosition = 'board-yellow-' + yellow3InitialPosition;
+  } else if (clickYellow3 > 10 && yellow3InitialPosition === 72) {
+    yellow3NewPosition = 'board-yellow-' + yellow3InitialPosition;
+  } else if (clickYellow3 > 10 && yellow3InitialPosition === 73) {
+    yellow3NewPosition = 'board-yellow-' + yellow3InitialPosition;
+  } else if (clickYellow3 > 10 && yellow3InitialPosition === 74) {
+    yellow3NewPosition = 'board-yellow-' + yellow3InitialPosition;
+  } else if (clickYellow3 > 10 && yellow3InitialPosition === 75) {
+    yellow3NewPosition = 'board-yellow-' + yellow3InitialPosition;
+  }
+}
+
+function yellow4FinalPath() {
+  if (clickYellow4 > 10 && yellow4InitialPosition === 69) {
+    yellow4NewPosition = 'board-yellow-' + yellow4InitialPosition;
+  } else if (clickYellow4 > 10 && yellow4InitialPosition === 70) {
+    yellow4NewPosition = 'board-yellow-' + yellow4InitialPosition;
+  } else if (clickYellow4 > 10 && yellow4InitialPosition === 71) {
+    yellow4NewPosition = 'board-yellow-' + yellow4InitialPosition;
+  } else if (clickYellow4 > 10 && yellow4InitialPosition === 72) {
+    yellow4NewPosition = 'board-yellow-' + yellow4InitialPosition;
+  } else if (clickYellow4 > 10 && yellow4InitialPosition === 73) {
+    yellow4NewPosition = 'board-yellow-' + yellow4InitialPosition;
+  } else if (clickYellow4 > 10 && yellow4InitialPosition === 74) {
+    yellow4NewPosition = 'board-yellow-' + yellow4InitialPosition;
+  } else if (clickYellow4 > 10 && yellow4InitialPosition === 75) {
+    yellow4NewPosition = 'board-yellow-' + yellow4InitialPosition;
+  }
+}
+
+function moveYellow1() {
+  if (yellow1NewPosition.search('yellow') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-yellow-76').appendChild(document.getElementById('y1'));
+    }
+    return;
+  }
+  clickYellow1 += 1;
+  yellow1InitialPosition += diceResult;
+  yellow1NewPosition = 'board-pos-' + yellow1InitialPosition;
+  yellow1FinalPath();
+  document.getElementById(yellow1NewPosition).appendChild(document.getElementById('y1'));
+  diceResult = 0;
+}
+
+function moveYellow2() {
+  if (yellow2NewPosition.search('yellow') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-yellow-76').appendChild(document.getElementById('y2'));
+    }
+    return;
+  }
+  clickYellow2 += 1;
+  yellow2InitialPosition += diceResult;
+  yellow2NewPosition = 'board-pos-' + yellow2InitialPosition;
+  yellow2FinalPath();
+  document.getElementById(yellow2NewPosition).appendChild(document.getElementById('y2'));
+  diceResult = 0;
+}
+
+function moveYellow3() {
+  if (yellow3NewPosition.search('yellow') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-yellow-76').appendChild(document.getElementById('y3'));
+    }
+    return;
+  }
+  clickYellow3 += 1;
+  yellow3InitialPosition += diceResult;
+  yellow3NewPosition = 'board-pos-' + yellow3InitialPosition;
+  yellow3FinalPath();
+  document.getElementById(yellow3NewPosition).appendChild(document.getElementById('y3'));
+  diceResult = 0;
+}
+
+function moveYellow4() {
+  if (yellow4NewPosition.search('yellow') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-yellow-76').appendChild(document.getElementById('y4'));
+    }
+    return;
+  }
+  clickYellow4 += 1;
+  yellow4InitialPosition += diceResult;
+  yellow4NewPosition = 'board-pos-' + yellow4InitialPosition;
+  yellow4FinalPath();
+  document.getElementById(yellow4NewPosition).appendChild(document.getElementById('y4'));
+  diceResult = 0;
+}
+
+
+// GREEN TEAM'S MOVEMENT FUNCTIONS
+
+function green1MovementCondition() {
+  if (document.getElementById('board-green-base-1').children.length === 0) {
+    moveGreen1();
+  }
+  if (document.getElementById('board-green-base-1').children.length > 0 && diceResult === 1 || document.getElementById('board-green-base-1').children.length > 0 && diceResult === 6) {
+    document.getElementById(green1NewPosition).appendChild(document.getElementById('g1'));
+  }
+}
+
+function green2MovementCondition() {
+  if (document.getElementById('board-green-base-2').children.length === 0) {
+    moveGreen2();
+  }
+  if (document.getElementById('board-green-base-2').children.length > 0 && diceResult === 1 || document.getElementById('board-green-base-2').children.length > 0 && diceResult === 6) {
+    document.getElementById(green2NewPosition).appendChild(document.getElementById('g2'));
+  }
+}
+
+function green3MovementCondition() {
+  if (document.getElementById('board-green-base-3').children.length === 0) {
+    moveGreen3();
+  }
+  if (document.getElementById('board-green-base-3').children.length > 0 && diceResult === 1 || document.getElementById('board-green-base-3').children.length > 0 && diceResult === 6) {
+    document.getElementById(green3NewPosition).appendChild(document.getElementById('g3'));
+  }
+}
+
+function green4MovementCondition() {
+  if (document.getElementById('board-green-base-4').children.length === 0) {
+    moveGreen4();
+  }
+  if (document.getElementById('board-green-base-4').children.length > 0 && diceResult === 1 || document.getElementById('board-green-base-4').children.length > 0 && diceResult === 6) {
+    document.getElementById(green4NewPosition).appendChild(document.getElementById('g4'));
+  }
+}
+
+function green1ResetBoardCount() {
+  if (green1InitialPosition === 69) {
+    green1InitialPosition = 1;
+    green1NewPosition = 'board-pos-' + green1InitialPosition;
+  } else if (green1InitialPosition === 70) {
+    green1InitialPosition = 2;
+    green1NewPosition = 'board-pos-' + green1InitialPosition;
+  } else if (green1InitialPosition === 71) {
+    green1InitialPosition = 3;
+    green1NewPosition = 'board-pos-' + green1InitialPosition;
+  } else if (green1InitialPosition === 72) {
+    green1InitialPosition = 4;
+    green1NewPosition = 'board-pos-' + green1InitialPosition;
+  } else if (green1InitialPosition === 73) {
+    green1InitialPosition = 5;
+    green1NewPosition = 'board-pos-' + green1InitialPosition;
+  } else if (green1InitialPosition === 74) {
+    green1InitialPosition = 6;
+    green1NewPosition = 'board-pos-' + green1InitialPosition;
+  }
+}
+
+function green2ResetBoardCount() {
+  if (green2InitialPosition === 69) {
+    green2InitialPosition = 1;
+    green2NewPosition = 'board-pos-' + green2InitialPosition;
+  } else if (green2InitialPosition === 70) {
+    green2InitialPosition = 2;
+    green2NewPosition = 'board-pos-' + green2InitialPosition;
+  } else if (green2InitialPosition === 71) {
+    green2InitialPosition = 3;
+    green2NewPosition = 'board-pos-' + green2InitialPosition;
+  } else if (green2InitialPosition === 72) {
+    green2InitialPosition = 4;
+    green2NewPosition = 'board-pos-' + green2InitialPosition;
+  } else if (green2InitialPosition === 73) {
+    green2InitialPosition = 5;
+    green2NewPosition = 'board-pos-' + green2InitialPosition;
+  } else if (green2InitialPosition === 74) {
+    green2InitialPosition = 6;
+    green2NewPosition = 'board-pos-' + green2InitialPosition;
+  }
+}
+
+function green3ResetBoardCount() {
+  if (green3InitialPosition === 69) {
+    green3InitialPosition = 1;
+    green3NewPosition = 'board-pos-' + green3InitialPosition;
+  } else if (green3InitialPosition === 70) {
+    green3InitialPosition = 2;
+    green3NewPosition = 'board-pos-' + green3InitialPosition;
+  } else if (green3InitialPosition === 71) {
+    green3InitialPosition = 3;
+    green3NewPosition = 'board-pos-' + green3InitialPosition;
+  } else if (green3InitialPosition === 72) {
+    green3InitialPosition = 4;
+    green3NewPosition = 'board-pos-' + green3InitialPosition;
+  } else if (green3InitialPosition === 73) {
+    green3InitialPosition = 5;
+    green3NewPosition = 'board-pos-' + green3InitialPosition;
+  } else if (green3InitialPosition === 74) {
+    green3InitialPosition = 6;
+    green3NewPosition = 'board-pos-' + green3InitialPosition;
+  }
+}
+
+function green4ResetBoardCount() {
+  if (green4InitialPosition === 69) {
+    green4InitialPosition = 1;
+    green4NewPosition = 'board-pos-' + green4InitialPosition;
+  } else if (green4InitialPosition === 70) {
+    green4InitialPosition = 2;
+    green4NewPosition = 'board-pos-' + green4InitialPosition;
+  } else if (green4InitialPosition === 71) {
+    green4InitialPosition = 3;
+    green4NewPosition = 'board-pos-' + green4InitialPosition;
+  } else if (green4InitialPosition === 72) {
+    green4InitialPosition = 4;
+    green4NewPosition = 'board-pos-' + green4InitialPosition;
+  } else if (green4InitialPosition === 73) {
+    green4InitialPosition = 5;
+    green4NewPosition = 'board-pos-' + green4InitialPosition;
+  } else if (green4InitialPosition === 74) {
+    green4InitialPosition = 6;
+    green4NewPosition = 'board-pos-' + green4InitialPosition;
+  }
+}
+
+function green1FinalPath() {
+  if (clickGreen1 > 10 && green1InitialPosition === 52) {
+    green1NewPosition = 'board-green-' + green1InitialPosition;
+  } else if (clickGreen1 > 10 && green1InitialPosition === 53) {
+    green1NewPosition = 'board-green-' + green1InitialPosition;
+  } else if (clickGreen1 > 10 && green1InitialPosition === 54) {
+    green1NewPosition = 'board-green-' + green1InitialPosition;
+  } else if (clickGreen1 > 10 && green1InitialPosition === 55) {
+    green1NewPosition = 'board-green-' + green1InitialPosition;
+  } else if (clickGreen1 > 10 && green1InitialPosition === 56) {
+    green1NewPosition = 'board-green-' + green1InitialPosition;
+  } else if (clickGreen1 > 10 && green1InitialPosition === 57) {
+    green1NewPosition = 'board-green-' + green1InitialPosition;
+  } else if (clickGreen1 > 10 && green1InitialPosition === 58) {
+    green1NewPosition = 'board-green-' + green1InitialPosition;
+  }
+}
+
+function green2FinalPath() {
+  if (clickGreen2 > 10 && green2InitialPosition === 52) {
+    green2NewPosition = 'board-green-' + green2InitialPosition;
+  } else if (clickGreen2 > 10 && green2InitialPosition === 53) {
+    green2NewPosition = 'board-green-' + green2InitialPosition;
+  } else if (clickGreen2 > 10 && green2InitialPosition === 54) {
+    green2NewPosition = 'board-green-' + green2InitialPosition;
+  } else if (clickGreen2 > 10 && green2InitialPosition === 55) {
+    green2NewPosition = 'board-green-' + green2InitialPosition;
+  } else if (clickGreen2 > 10 && green2InitialPosition === 56) {
+    green2NewPosition = 'board-green-' + green2InitialPosition;
+  } else if (clickGreen2 > 10 && green2InitialPosition === 57) {
+    green2NewPosition = 'board-green-' + green2InitialPosition;
+  } else if (clickGreen2 > 10 && green2InitialPosition === 58) {
+    green2NewPosition = 'board-green-' + green2InitialPosition;
+  }
+}
+
+function green3FinalPath() {
+  if (clickGreen3 > 10 && green3InitialPosition === 52) {
+    green3NewPosition = 'board-green-' + green3InitialPosition;
+  } else if (clickGreen3 > 10 && green3InitialPosition === 53) {
+    green3NewPosition = 'board-green-' + green3InitialPosition;
+  } else if (clickGreen3 > 10 && green3InitialPosition === 54) {
+    green3NewPosition = 'board-green-' + green3InitialPosition;
+  } else if (clickGreen3 > 10 && green3InitialPosition === 55) {
+    green3NewPosition = 'board-green-' + green3InitialPosition;
+  } else if (clickGreen3 > 10 && green3InitialPosition === 56) {
+    green3NewPosition = 'board-green-' + green3InitialPosition;
+  } else if (clickGreen3 > 10 && green3InitialPosition === 57) {
+    green3NewPosition = 'board-green-' + green3InitialPosition;
+  } else if (clickGreen3 > 10 && green3InitialPosition === 58) {
+    green3NewPosition = 'board-green-' + green3InitialPosition;
+  }
+}
+
+function green4FinalPath() {
+  if (clickGreen4 > 10 && green4InitialPosition === 52) {
+    green4NewPosition = 'board-green-' + green4InitialPosition;
+  } else if (clickGreen4 > 10 && green4InitialPosition === 53) {
+    green4NewPosition = 'board-green-' + green4InitialPosition;
+  } else if (clickGreen4 > 10 && green4InitialPosition === 54) {
+    green4NewPosition = 'board-green-' + green4InitialPosition;
+  } else if (clickGreen4 > 10 && green4InitialPosition === 55) {
+    green4NewPosition = 'board-green-' + green4InitialPosition;
+  } else if (clickGreen4 > 10 && green4InitialPosition === 56) {
+    green4NewPosition = 'board-green-' + green4InitialPosition;
+  } else if (clickGreen4 > 10 && green4InitialPosition === 57) {
+    green4NewPosition = 'board-green-' + green4InitialPosition;
+  } else if (clickGreen4 > 10 && green4InitialPosition === 58) {
+    green4NewPosition = 'board-green-' + green4InitialPosition;
+  }
+}
+
+function moveGreen1() {
+  if (green1NewPosition.search('green') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-green-59').appendChild(document.getElementById('g1'));
+    }
+    return;
+  }
+  clickGreen1 += 1;
+  green1InitialPosition += diceResult;
+  green1NewPosition = 'board-pos-' + green1InitialPosition;
+  green1ResetBoardCount();
+  green1FinalPath();
+  document.getElementById(green1NewPosition).appendChild(document.getElementById('g1'));
+  diceResult = 0;
+}
+
+function moveGreen2() {
+  if (green2NewPosition.search('green') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-green-59').appendChild(document.getElementById('g2'));
+    }
+    return;
+  }
+  clickGreen2 += 1;
+  green2InitialPosition += diceResult;
+  green2NewPosition = 'board-pos-' + green2InitialPosition;
+  green2ResetBoardCount();
+  green2FinalPath();
+  document.getElementById(green2NewPosition).appendChild(document.getElementById('g2'));
+  diceResult = 0;
+}
+
+function moveGreen3() {
+  if (green3NewPosition.search('green') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-green-59').appendChild(document.getElementById('g3'));
+    }
+    return;
+  }
+  clickGreen3 += 1;
+  green3InitialPosition += diceResult;
+  green3NewPosition = 'board-pos-' + green3InitialPosition;
+  green3ResetBoardCount();
+  green3FinalPath();
+  document.getElementById(green3NewPosition).appendChild(document.getElementById('g3'));
+  diceResult = 0;
+}
+
+function moveGreen4() {
+  if (green4NewPosition.search('green') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-green-59').appendChild(document.getElementById('g4'));
+    }
+    return;
+  }
+  clickGreen4 += 1;
+  green4InitialPosition += diceResult;
+  green4NewPosition = 'board-pos-' + green4InitialPosition;
+  green4ResetBoardCount();
+  green4FinalPath();
+  document.getElementById(green1NewPosition).appendChild(document.getElementById('g4'));
+  diceResult = 0;
+}
+
+
+// RED TEAM'S MOVEMENT FUNCTIONS
+
+function red1MovementCondition() {
+  if (document.getElementById('board-red-base-1').children.length === 0) {
+    moveRed1();
+  }
+  if (document.getElementById('board-red-base-1').children.length > 0 && diceResult === 1 || document.getElementById('board-red-base-1').children.length > 0 && diceResult === 6) {
+    document.getElementById(red1NewPosition).appendChild(document.getElementById('r1'));
+  }
+}
+
+function red2MovementCondition() {
+  if (document.getElementById('board-red-base-2').children.length === 0) {
+    moveRed2();
+  }
+  if (document.getElementById('board-red-base-2').children.length > 0 && diceResult === 1 || document.getElementById('board-red-base-2').children.length > 0 && diceResult === 6) {
+    document.getElementById(red2NewPosition).appendChild(document.getElementById('r2'));
+  }
+}
+
+function red3MovementCondition() {
+  if (document.getElementById('board-red-base-3').children.length === 0) {
+    moveRed3();
+  }
+  if (document.getElementById('board-red-base-3').children.length > 0 && diceResult === 1 || document.getElementById('board-red-base-3').children.length > 0 && diceResult === 6) {
+    document.getElementById(red3NewPosition).appendChild(document.getElementById('r3'));
+  }
+}
+
+function red4MovementCondition() {
+  if (document.getElementById('board-red-base-4').children.length === 0) {
+    moveRed4();
+  }
+  if (document.getElementById('board-red-base-4').children.length > 0 && diceResult === 1 || document.getElementById('board-red-base-4').children.length > 0 && diceResult === 6) {
+    document.getElementById(red4NewPosition).appendChild(document.getElementById('r4'));
+  }
+}
+
+function red1ResetBoardCount() {
+  if (red1InitialPosition === 69) {
+    red1InitialPosition = 1;
+    red1NewPosition = 'board-pos-' + red1InitialPosition;
+  } else if (red1InitialPosition === 70) {
+    red1InitialPosition = 2;
+    red1NewPosition = 'board-pos-' + red1InitialPosition;
+  } else if (red1InitialPosition === 71) {
+    red1InitialPosition = 3;
+    red1NewPosition = 'board-pos-' + red1InitialPosition;
+  } else if (red1InitialPosition === 72) {
+    red1InitialPosition = 4;
+    red1NewPosition = 'board-pos-' + red1InitialPosition;
+  } else if (red1InitialPosition === 73) {
+    red1InitialPosition = 5;
+    red1NewPosition = 'board-pos-' + red1InitialPosition;
+  } else if (red1InitialPosition === 74) {
+    red1InitialPosition = 6;
+    red1NewPosition = 'board-pos-' + red1InitialPosition;
+  }
+}
+
+function red2ResetBoardCount() {
+  if (red2InitialPosition === 69) {
+    red2InitialPosition = 1;
+    red2NewPosition = 'board-pos-' + red2InitialPosition;
+  } else if (red2InitialPosition === 70) {
+    red2InitialPosition = 2;
+    red2NewPosition = 'board-pos-' + red2InitialPosition;
+  } else if (red2InitialPosition === 71) {
+    red2InitialPosition = 3;
+    red2NewPosition = 'board-pos-' + red2InitialPosition;
+  } else if (red2InitialPosition === 72) {
+    red2InitialPosition = 4;
+    red2NewPosition = 'board-pos-' + red2InitialPosition;
+  } else if (red2InitialPosition === 73) {
+    red2InitialPosition = 5;
+    red2NewPosition = 'board-pos-' + red2InitialPosition;
+  } else if (red2InitialPosition === 74) {
+    red2InitialPosition = 6;
+    red2NewPosition = 'board-pos-' + red2InitialPosition;
+  }
+}
+
+function red3ResetBoardCount() {
+  if (red3InitialPosition === 69) {
+    red3InitialPosition = 1;
+    red3NewPosition = 'board-pos-' + red3InitialPosition;
+  } else if (red3InitialPosition === 70) {
+    red3InitialPosition = 2;
+    red3NewPosition = 'board-pos-' + red3InitialPosition;
+  } else if (red3InitialPosition === 71) {
+    red3InitialPosition = 3;
+    red3NewPosition = 'board-pos-' + red3InitialPosition;
+  } else if (red3InitialPosition === 72) {
+    red3InitialPosition = 4;
+    red3NewPosition = 'board-pos-' + red3InitialPosition;
+  } else if (red3InitialPosition === 73) {
+    red3InitialPosition = 5;
+    red3NewPosition = 'board-pos-' + red3InitialPosition;
+  } else if (red3InitialPosition === 74) {
+    red3InitialPosition = 6;
+    red3NewPosition = 'board-pos-' + red3InitialPosition;
+  }
+}
+
+function red4ResetBoardCount() {
+  if (red4InitialPosition === 69) {
+    red4InitialPosition = 1;
+    red4NewPosition = 'board-pos-' + red4InitialPosition;
+  } else if (red4InitialPosition === 70) {
+    red4InitialPosition = 2;
+    red4NewPosition = 'board-pos-' + red4InitialPosition;
+  } else if (red4InitialPosition === 71) {
+    red4InitialPosition = 3;
+    red4NewPosition = 'board-pos-' + red4InitialPosition;
+  } else if (red4InitialPosition === 72) {
+    red4InitialPosition = 4;
+    red4NewPosition = 'board-pos-' + red4InitialPosition;
+  } else if (red4InitialPosition === 73) {
+    red4InitialPosition = 5;
+    red4NewPosition = 'board-pos-' + red4InitialPosition;
+  } else if (red4InitialPosition === 74) {
+    red4InitialPosition = 6;
+    red4NewPosition = 'board-pos-' + red4InitialPosition;
+  }
+}
+
+function red1FinalPath() {
+  if (clickRed1 > 10 && red1InitialPosition === 35) {
+    red1NewPosition = 'board-red-' + red1InitialPosition;
+  } else if (clickRed1 > 10 && red1InitialPosition === 36) {
+    red1NewPosition = 'board-red-' + red1InitialPosition;
+  } else if (clickRed1 > 10 && red1InitialPosition === 37) {
+    red1NewPosition = 'board-red-' + red1InitialPosition;
+  } else if (clickRed1 > 10 && red1InitialPosition === 38) {
+    red1NewPosition = 'board-red-' + red1InitialPosition;
+  } else if (clickRed1 > 10 && red1InitialPosition === 39) {
+    red1NewPosition = 'board-red-' + red1InitialPosition;
+  } else if (clickRed1 > 10 && red1InitialPosition === 40) {
+    red1NewPosition = 'board-red-' + red1InitialPosition;
+  } else if (clickRed1 > 10 && red1InitialPosition === 41) {
+    red1NewPosition = 'board-red-' + red1InitialPosition;
+  }
+}
+
+function red2FinalPath() {
+  if (clickRed2 > 10 && red2InitialPosition === 35) {
+    red2NewPosition = 'board-red-' + red2InitialPosition;
+  } else if (clickRed2 > 10 && red2InitialPosition === 36) {
+    red2NewPosition = 'board-red-' + red2InitialPosition;
+  } else if (clickRed2 > 10 && red2InitialPosition === 37) {
+    red2NewPosition = 'board-red-' + red2InitialPosition;
+  } else if (clickRed2 > 10 && red2InitialPosition === 38) {
+    red2NewPosition = 'board-red-' + red2InitialPosition;
+  } else if (clickRed2 > 10 && red2InitialPosition === 39) {
+    red2NewPosition = 'board-red-' + red2InitialPosition;
+  } else if (clickRed2 > 10 && red2InitialPosition === 40) {
+    red2NewPosition = 'board-red-' + red2InitialPosition;
+  } else if (clickRed2 > 10 && red2InitialPosition === 41) {
+    red2NewPosition = 'board-red-' + red2InitialPosition;
+  }
+}
+
+function red3FinalPath() {
+  if (clickRed3 > 10 && red3InitialPosition === 35) {
+    red3NewPosition = 'board-red-' + red3InitialPosition;
+  } else if (clickRed3 > 10 && red3InitialPosition === 36) {
+    red3NewPosition = 'board-red-' + red3InitialPosition;
+  } else if (clickRed3 > 10 && red3InitialPosition === 37) {
+    red3NewPosition = 'board-red-' + red3InitialPosition;
+  } else if (clickRed3 > 10 && red3InitialPosition === 38) {
+    red3NewPosition = 'board-red-' + red3InitialPosition;
+  } else if (clickRed3 > 10 && red3InitialPosition === 39) {
+    red3NewPosition = 'board-red-' + red3InitialPosition;
+  } else if (clickRed3 > 10 && red3InitialPosition === 40) {
+    red3NewPosition = 'board-red-' + red3InitialPosition;
+  } else if (clickRed3 > 10 && red3InitialPosition === 41) {
+    red3NewPosition = 'board-red-' + red3InitialPosition;
+  }
+}
+
+function red4FinalPath() {
+  if (clickRed4 > 10 && red4InitialPosition === 35) {
+    red4NewPosition = 'board-red-' + red4InitialPosition;
+  } else if (clickRed4 > 10 && red4InitialPosition === 36) {
+    red4NewPosition = 'board-red-' + red4InitialPosition;
+  } else if (clickRed4 > 10 && red4InitialPosition === 37) {
+    red4NewPosition = 'board-red-' + red4InitialPosition;
+  } else if (clickRed4 > 10 && red4InitialPosition === 38) {
+    red4NewPosition = 'board-red-' + red4InitialPosition;
+  } else if (clickRed4 > 10 && red4InitialPosition === 39) {
+    red4NewPosition = 'board-red-' + red4InitialPosition;
+  } else if (clickRed4 > 10 && red4InitialPosition === 40) {
+    red4NewPosition = 'board-red-' + red4InitialPosition;
+  } else if (clickRed4 > 10 && red4InitialPosition === 41) {
+    red4NewPosition = 'board-red-' + red4InitialPosition;
+  }
+}
+
+function moveRed1() {
+  if (red1NewPosition.search('red') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-red-42').appendChild(document.getElementById('r1'));
+    }
+    return;
+  }
+  clickRed1 += 1;
+  red1InitialPosition += diceResult;
+  red1NewPosition = 'board-pos-' + red1InitialPosition;
+  red1ResetBoardCount();
+  red1FinalPath();
+  document.getElementById(red1NewPosition).appendChild(document.getElementById('r1'));
+  diceResult = 0;
+}
+
+function moveRed2() {
+  if (red2NewPosition.search('red') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-red-42').appendChild(document.getElementById('r2'));
+    }
+    return;
+  }
+  clickRed2 += 1;
+  red2InitialPosition += diceResult;
+  red2NewPosition = 'board-pos-' + red2InitialPosition;
+  red2ResetBoardCount();
+  red2FinalPath();
+  document.getElementById(red2NewPosition).appendChild(document.getElementById('r2'));
+  diceResult = 0;
+}
+
+function moveRed3() {
+  if (red3NewPosition.search('red') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-red-42').appendChild(document.getElementById('r3'));
+    }
+    return;
+  }
+  clickRed3 += 1;
+  red3InitialPosition += diceResult;
+  red3NewPosition = 'board-pos-' + red3InitialPosition;
+  red3ResetBoardCount();
+  red3FinalPath();
+  document.getElementById(red3NewPosition).appendChild(document.getElementById('r3'));
+  diceResult = 0;
+}
+
+function moveRed4() {
+  if (red4NewPosition.search('red') !== -1) {
+    if (diceResult === 6) {
+      document.getElementById('board-red-42').appendChild(document.getElementById('r4'));
+    }
+    return;
+  }
+  clickRed4 += 1;
+  red4InitialPosition += diceResult;
+  red4NewPosition = 'board-pos-' + red4InitialPosition;
+  red4ResetBoardCount();
+  red4FinalPath();
+  document.getElementById(red4NewPosition).appendChild(document.getElementById('r4'));
+  diceResult = 0;
+}
+
+function blueEndGame() {
+  if (document.getElementById('board-blue-25').children.length === 4) {
+    bluePlayButton.style.display = 'none';
+    yellowPlayButton.style.display = 'none';
+    greenPlayButton.style.display = 'none';
+    redPlayButton.style.display = 'none';
+    startMessage.style.display = 'none';
+    blueMessage.style.display = 'none';
+    yellowMessage.style.display = 'none';
+    greenMessage.style.display = 'none';
+    redMessage.style.display = 'none';
+    blueWinMessage.style.display = 'block';
+  }
+}
+
+function yellowEndGame() {
+  if (document.getElementById('board-yellow-76').children.length === 4) {
+    bluePlayButton.style.display = 'none';
+    yellowPlayButton.style.display = 'none';
+    greenPlayButton.style.display = 'none';
+    redPlayButton.style.display = 'none';
+    startMessage.style.display = 'none';
+    blueMessage.style.display = 'none';
+    yellowMessage.style.display = 'none';
+    greenMessage.style.display = 'none';
+    redMessage.style.display = 'none';
+    yellowWinMessage.style.display = 'block';
+  }
+}
+
+function greenEndGame() {
+  if (document.getElementById('board-green-59').children.length === 4) {
+    bluePlayButton.style.display = 'none';
+    yellowPlayButton.style.display = 'none';
+    greenPlayButton.style.display = 'none';
+    redPlayButton.style.display = 'none';
+    startMessage.style.display = 'none';
+    blueMessage.style.display = 'none';
+    yellowMessage.style.display = 'none';
+    greenMessage.style.display = 'none';
+    redMessage.style.display = 'none';
+    greenWinMessage.style.display = 'block';
+  }
+}
+
+function redEndGame() {
+  if (document.getElementById('board-red-42').children.length === 4) {
+    bluePlayButton.style.display = 'none';
+    yellowPlayButton.style.display = 'none';
+    greenPlayButton.style.display = 'none';
+    redPlayButton.style.display = 'none';
+    startMessage.style.display = 'none';
+    blueMessage.style.display = 'none';
+    yellowMessage.style.display = 'none';
+    greenMessage.style.display = 'none';
+    redMessage.style.display = 'none';
+    redWinMessage.style.display = 'block';
+  }
+}
+const dice = document.getElementById('dice');
+const number1 = document.getElementById('dot1');
+const number2 = document.getElementById('dot2');
+const number3 = document.getElementById('dot3');
+const number4 = document.getElementById('dot4');
+const number5 = document.getElementById('dot5');
+const number6 = document.getElementById('dot6');
+const number7 = document.getElementById('dot7');
+function rollDice() {
+  diceResult = Math.ceil(Math.random() * 6);
+  dice.style.display = 'block';
+  number1.style.display = 'none';
+  number2.style.display = 'none';
+  number3.style.display = 'none';
+  number4.style.display = 'none';
+  number5.style.display = 'none';
+  number6.style.display = 'none';
+  number7.style.display = 'none';
+  switch (diceResult) {
+    case 1:
+      number7.style.display = 'block';
+      break;
+    case 2:
+      number3.style.display = 'block';
+      number4.style.display = 'block';
+      break;
+    case 3:
+      number3.style.display = 'block';
+      number4.style.display = 'block';
+      number7.style.display = 'block';
+      break;
+    case 4:
+      number1.style.display = 'block';
+      number3.style.display = 'block';
+      number4.style.display = 'block';
+      number6.style.display = 'block';
+      break;
+    case 5:
+      number1.style.display = 'block';
+      number3.style.display = 'block';
+      number4.style.display = 'block';
+      number6.style.display = 'block';
+      number7.style.display = 'block';
+      break;
+    case 6:
+      number1.style.display = 'block';
+      number2.style.display = 'block';
+      number3.style.display = 'block';
+      number4.style.display = 'block';
+      number5.style.display = 'block';
+      number6.style.display = 'block';
+      break;
+    default:
+      break;
+  }
+  return diceResult;
+}
+
+</script>
+</html>
