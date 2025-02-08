@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>"Welcome to the Artist’s Realm: Embrace Creativity, Explore Imagination, and Unleash Your Unique Vision in a World Without Limits!"</title>
+    <link rel="shortcut icon" href="https://t3.ftcdn.net/jpg/03/11/82/20/360_F_311822099_rnFbbp9Cca68DnC0hOVVLxvRqDwJ8oOq.jpg" type="image/x-icon">
+</head>
+<style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+    *
+    {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        text-decoration: none;
+        border: none;
+        outline: none;
+        scroll-behavior: smooth;
+    }
+    :root
+    {
+        --bg-color: #080808;
+        --second-bg-color: #131313;
+        --text-color: #ffffff;
+        --main-color:#00ffee;
+    }
+    html
+    {
+        font-size: 60%;
+        overflow-x: hidden;
+    }
+    body
+    {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+    .header
+    {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 4rem 12% 4rem;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 5;
+    }
+    .logo
+    {
+        font-size: 3rem;
+        color: var(--text-color);
+        font-weight: 800;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+    .logo:hover
+    {
+        transform: scale(1.1);
+    }
+    .logo span
+    {
+        text-shadow: 0 0 25px var(--main-color);
+    }
+    .navbar a
+    {
+        font-size: 1.8rem;
+        color: var(--text-color);
+        margin-left: 4rem;
+        font-weight: 500;
+        transition: 0.3s ease;
+        border-bottom: 3px solid transparent;
+    }
+    .navbar a:hover,.navbar a.active
+    {
+      border-bottom: 3px solid var(--main-color);
+      color: var(--main-color);
+    }
+    #menu-icon
+    {
+        font-size: 3.6rem;
+        color: var(--main-color);
+        display: none;
+    }
+    section
+    {
+        min-height: 100vh;
+        padding: 10rem 12% 10rem;
+    }
+    span
+    {
+        color: var(--main-color);
+    }
+    .logo span
+    {
+        color: var(--main-color);
+    }
+    .footer
+    {
+        position: relative;
+        background-color: var(--second-bg-color);
+        padding: 40px 0;
+        width: 100%;
+        bottom: 0;
+    }
+    .footer .social-icons
+    {
+        text-align: center;
+        padding-bottom: 25px;
+        color: var(--main-color);
+    }
+    .footer .social-icons a
+    {
+        font-size: 25px;
+        color: var(--main-color);
+        border: 2px solid var(--main-color);
+        width: 42px;
+        height: 42px;
+        line-height: 42px;
+        display: inline-block;
+        text-align: center;
+        border-radius: 50%;
+        margin: 0 10px;
+        transition: 0.3s ease-in-out;
+    }
+    .footer.social-icons a:hover
+    {
+        transform: scale(1.2)translateY(-10px);
+        background-color: var(--main-color);
+        color: black;
+        box-shadow: 0 0 10px var(--main-color);
+    }
+    .footer ul
+    {
+        margin-top: 0;
+        padding: 0;
+        list-style-type: none;
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    .footer ul li a
+    {
+        color: white;
+        border-bottom: 3px solid transparent;
+        text-decoration: none;
+        transition: 0.3s ease-in-out;
+    }
+    .footer ul li a:hover
+    {
+        border-bottom: 3px solid var(--main-color);
+    }
+    .footer ul li
+    {
+        display: inline-block;
+        padding: 0 15px;
+    }
+    .footer .copyright
+    {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 16px;
+      color: white;
+    }
+    .heading
+    {
+        font-size: 5rem;
+        text-align: center;
+        margin: 5rem 0;
+    }
+    .download-item
+    {
+        width: 100%;
+        border: 2px solid var(--text-color);
+        border-radius: 10px 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .download-item img
+    {
+        width: 15vw;
+        border-radius: 50%;
+        height: 30vh;
+    }
+    .download-item p
+    {
+        color: var(--text-color);
+        font-size: 3rem;
+    }
+    .download-item i
+    {
+        font-size: 3rem;
+        color:var(--main-color)
+    }
+    .download-item i:hover
+    {
+        box-shadow: 0 0 25px var(--main-color),
+                  0 0 50px var(--main-color),
+                  0 0 100px var(--main-color);
+    }
+    ::-webkit-scrollbar
+    {
+        width: 15px;
+    }
+    ::-webkit-scrollbar-thumb
+    {
+        background-color: var(--main-color);
+    }
+    ::-webkit-scrollbar-track
+    {
+        background-color: var(--bg-color);
+        width: 50px;
+    }
+    @media(max-width:991px)
+    {
+        header
+        {
+            padding: 2rem 3%;
+        }
+        .footer
+        {
+            padding: 2rem 3%;
+        }
+    }
+
+    @media(max-width:991px)
+    {
+        header
+        {
+            padding: 2rem 3%;
+        }
+        .projects .wrapper
+        {
+            grid-template-columns: repeat(1,1fr);
+        }
+        .contact form
+        {
+            flex-direction: column;
+        }
+        .footer
+        {
+            padding: 2rem 3%;
+        }
+    }
+    @media(max-width:895px)
+    {
+        #menu-icon
+        {
+            display: block;
+        }
+        .navbar
+        {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 50%;
+            padding: 1rem 3%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom-left-radius: 2rem ;
+            border-left: 2px solid var(--main-color);
+            border-bottom: 2px solid var(--main-color);
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        .navbar .active
+        {
+            display: block;
+        }
+        .navbar a
+        {
+            display: block;
+            font-size: 2rem;
+            color: white;
+            margin: 3rem 0;
+        }
+        .heading
+        {
+            font-size: 3rem;
+            text-align: center;
+            margin: 7rem 0;
+        }
+        .download-item p
+    {
+        color: var(--text-color);
+        font-size: 2rem;
+    }
+    .download-item img
+    {
+        width: 30vw;
+        border-radius: 50%;
+        height: 30vh;
+    }
+    
+    }
+    
+   
+</style>
+<body>
+    <header class="header">
+        <a href="#Home" class="logo">POORNESH <span>PAVAN</span></a>
+        <i class='bx bx-menu' id="menu-icon" onclick="showSidebar()"></i>
+        <nav class="navbar" id="navbar">
+                <a href="#" class="active">Home</a>
+                <a href="#About">About</a>
+                <a href="#Works">Works</a> 
+                <a href="#Collaborations">Collaborations</a>
+                <a href="#contact">Contact</a> 
+        </nav>
+       </header> 
+       <section class="actors-download">
+          <h2 class="heading">Anime sketches</h2>
+            <div class="download-item">
+               <img src="pp.works-3.jpg" alt="">
+               <p>Yhwach</p>
+               <a href="pp.works-3.jpg" download="pp-works-4.jpg"><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani1.jpg" alt="">
+                <p>Musashi</p>
+                <a href="pp-ani1.jpg" download="pp-ani1.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani2.jpg" alt="">
+                <p>Thorkell</p>
+                <a href="pp-ani2.jpg" download="pp-ani2.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani3.jpg" alt="">
+                <p>The Mugen Train arc</p>
+                <a href="pp-ani3.jpg" download="pp-ani3.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani4.jpg" alt="">
+                <p>Denji</p>
+                <a href="pp-ani4.jpg" download="pp-ani4.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani5.jpg" alt="">
+                <p>Naruto Uzumaki</p>
+                <a href="pp-ani5.jpg" download="pp-ani5.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani6.jpg" alt="">
+                <p>Grimmjow Jaegerjaquez</p>
+                <a href="pp-ani6.jpg" download="pp-ani6.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani7.jpg" alt="">
+                <p>Monkey D.Luffy</p>
+                <a href="pp-ani7.jpg" download="pp-ani7.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani8.jpg" alt="">
+                <p>Gol D.Roger</p>
+                <a href="pp-ani8.jpg" download="pp-ani8.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani9.jpg" alt="">
+                <p>Roronoa Zoro</p>
+                <a href="pp-ani9.jpg" download="pp-ani9.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani10.jpg" alt="">
+                <p>Ichigo Kurosaki</p>
+                <a href="pp-ani10.jpg" download="pp-ani10.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani11.jpg" alt="">
+                <p>Rengoku Kyojuro</p>
+                <a href="pp-ani11.jpg" download="pp-ani11.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani12.jpg" alt="">
+                <p>Kisuke Urahara</p>
+                <a href="pp-ani12.jpg" download="pp-ani12.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani13.jpg" alt="">
+                <p>Levi Ackerman</p>
+                <a href="pp-ani13.jpg" download="pp-ani13.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani14.jpg" alt="">
+                <p>Okarun</p>
+                <a href="pp-ani14.jpg" download="pp-ani14.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+            <div class="download-item">
+                <img src="pp-ani15.jpg" alt="">
+                <p>Garou</p>
+                <a href="pp-ani15.jpg" download="pp-ani15.jpg" ><i class='bx bx-download' id="btn"></i></a>
+            </div>
+       </section>
+       <footer class="footer">
+        <div class="social-icons">
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="https://www.instagram.com/poorneshcantdraw?igsh=dWJjYmFhMjB0OGE0"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+        <ul class="list">
+            <li><a href="#Home">FAQ</a></li>
+            <li><a href="#Home">Services</a></li>
+            <li><a href="#About">About Me</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p class="copyright">
+            © Poornesh Pavan | All Rights Reserved
+        </p>
+    </footer>
+</body>
+<script>
+     const navToggle = document.querySelector('.nav-toggle');
+    navToggle.addEventListener('click', showSidebar);
+
+    function showSidebar()
+    {
+        const sidebar = document.querySelector('#navbar');
+        sidebar.style.display = sidebar.style.display === 'flex'? 'none' : 'flex';
+    }
+</script>
+</html>
